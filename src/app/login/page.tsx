@@ -44,12 +44,20 @@ console.log(resData);
 if(error){
     toast.error(error.message)
 }else{
-    toast.success('Login Successful')
+    
     redirect('/')
 }
 
    
   };
+
+  const HandleGoogleSignIn=async()=>{
+     await authClient.signIn.social({
+    provider: "google",
+    callbackURL: "/",
+  });
+
+  }
 
   const [password, setPassword] = useState("")
 
@@ -73,7 +81,7 @@ if(error){
           <form onSubmit={onSubmit}>
             <FieldGroup>
               <Field>
-                <Button variant="outline" type="button">
+                <Button variant="outline" type="button" onClick={HandleGoogleSignIn}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

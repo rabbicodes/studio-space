@@ -49,10 +49,12 @@ const handleLogout = async () => {
         
 
  <DropdownMenu >
-      <DropdownMenuTrigger render={ <Avatar>
+      <DropdownMenuTrigger render={ <button type="button" className="flex items-center gap-2">
+      <Avatar>
   <AvatarImage src={user?.image as string} />
   <AvatarFallback>{user?.name?.charAt(0).toUpperCase()}.</AvatarFallback>
-</Avatar>} />
+</Avatar>
+    </button> } />
       <DropdownMenuContent>
         <DropdownMenuGroup>
           <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>

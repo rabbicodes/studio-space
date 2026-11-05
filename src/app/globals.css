@@ -3,6 +3,11 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+:root {
+  --primary: #9b2ae5;
+  --primary-foreground: #ffffff;
+  --ring: #9b2ae5;
+}
 
 @theme inline {
   --color-background: var(--background);

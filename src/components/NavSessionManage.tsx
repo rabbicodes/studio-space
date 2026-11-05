@@ -60,7 +60,7 @@ const handleLogout = async () => {
           <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
           
           <DropdownMenuItem>Dashboard</DropdownMenuItem>
-          <DropdownMenuItem>Add New Studio</DropdownMenuItem>
+          <DropdownMenuItem><Link href='/add-studio'>Add New Studio</Link></DropdownMenuItem>
           <DropdownMenuItem>My Studio Listings</DropdownMenuItem>
           <DropdownMenuItem>My Bookings</DropdownMenuItem>
         </DropdownMenuGroup>

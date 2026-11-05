@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
+   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+        
+      },
+    ],
+  },
   reactCompiler: true,
   turbopack: {
     rules: {

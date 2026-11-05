@@ -79,7 +79,7 @@ export function Banner() {
           swiperRef.current = swiper;
         }}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="h-[620px] w-full sm:h-[680px] lg:h-[720px]"
+        className="h-155 w-full sm:h-170 lg:h-180"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.image} className="relative h-full w-full">
@@ -92,8 +92,8 @@ export function Banner() {
               className="object-cover"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/25" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+            <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/65 to-black/25" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />
 
             <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
               <div className="max-w-2xl pb-28 pt-16 sm:pt-20">

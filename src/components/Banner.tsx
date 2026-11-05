@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight,  } from "lucide-react";
 import { A11y, Autoplay, EffectFade, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper";
@@ -38,11 +39,6 @@ const slides = [
   },
 ] as const;
 
-const highlights = [
-  "Verified spaces",
-  "Transparent pricing",
-  "Real-time booking",
-] as const;
 
 // Mirrors the navbar Register button (purple `rgb(155,42,229)`, bold, rounded-[10px]),
 // scaled up for the hero.
@@ -54,10 +50,10 @@ export function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section
-      aria-label="Featured creative spaces"
-      className="relative isolate overflow-hidden bg-neutral-950 text-white"
-    >
+   <section
+  aria-label="Featured creative spaces"
+  className="relative -mt-16 isolate overflow-hidden bg-neutral-950 text-white"
+>
       <h1 className="sr-only">
         StudioSpace — book creative studio spaces by the hour
       </h1>
@@ -95,16 +91,15 @@ export function Banner() {
             <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/65 to-black/25" />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />
 
-            <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto flex h-full max-w-7xl mt-9 items-center px-4 sm:px-6 lg:px-8">
               <div className="max-w-2xl pb-28 pt-16 sm:pt-20">
-                <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.18em] text-white/85 uppercase backdrop-blur">
-                  {slide.eyebrow}
-                </span>
-
-                <h2 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                  {slide.title}
-                </h2>
-
+               
+<h2 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+  {slide.title.split(" ").slice(0, 2).join(" ")}
+  <span className="text-purple-500">
+    {" "}{slide.title.split(" ").slice(2).join(" ")}
+  </span>
+</h2>
                 <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/75 sm:text-lg">
                   {slide.description}
                 </p>
@@ -122,17 +117,7 @@ export function Banner() {
                   </Link>
                 </div>
 
-                <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/70 sm:text-sm">
-                  {highlights.map((highlight) => (
-                    <li key={highlight} className="flex items-center gap-1.5">
-                      <Check
-                        aria-hidden="true"
-                        className="size-3.5 text-[rgb(155,42,229)]"
-                      />
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
+               
               </div>
             </div>
           </SwiperSlide>

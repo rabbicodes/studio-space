@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,7 +12,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import NavSessionManage from "./NavSessionManage";
 import ThemeToggle from "./ThemeToggle";
-
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -32,30 +32,73 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function Navbar () {
+export function Navbar() {
   const pathname = usePathname();
+
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const isHome = pathname === "/";
+  const transparentNavbar = isHome && !scrolled;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
 
 
 
   return (
-    <header className="sticky mb-6 top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        transparentNavbar
+          ? "border-b border-transparent bg-transparent text-white"
+          : "border-b border-gray-200 bg-gray-200 text-gray-900 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-[#151518]/95 dark:text-white",
+      )}
+    >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-       
+
+        {/* Logo */}
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2"
+          className="flex shrink-0 items-center gap-1"
         >
           <Image
             src={logo}
-            alt=""
+            alt="Studio Space"
             priority
-            className="h-7 w-auto md:h-9"
+            className="h-13 w-auto object-contain"
           />
-          <span className="text-[22px] font-bold leading-none tracking-tight md:text-[32px]">
-            Studio <span className="text-[rgb(155,42,229)]">Space</span>
+
+          <span
+            className={cn(
+              "text-[22px] font-bold leading-none tracking-tight md:text-[32px]",
+              transparentNavbar
+                ? "text-white"
+                : "text-gray-900 dark:text-white",
+            )}
+          >
+            Studio{" "}
+            <span className="text-[#9b2ae5]">
+              Space
+            </span>
           </span>
         </Link>
+
+        {/* Desktop Navigation */}
         <nav
           aria-label="Main navigation"
           className="hidden items-center gap-1 md:flex"
@@ -70,9 +113,13 @@ export function Navbar () {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  active
-                    ? "bg-muted text-foreground"
-                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                  transparentNavbar
+                    ? active
+                      ? "bg-white/15 text-white"
+                      : "text-white/75 hover:bg-white/10 hover:text-white"
+                    : active
+                      ? "bg-purple-100 text-[#9b2ae5] dark:bg-purple-500/10 dark:text-[#c77aff]"
+                      : "text-gray-700 hover:bg-white dark:text-gray-300 dark:hover:bg-white/10",
                 )}
               >
                 {item.label}
@@ -80,29 +127,50 @@ export function Navbar () {
             );
           })}
         </nav>
-      <div className="flex gap-6 items-center">
-        <ThemeToggle/>
-       <NavSessionManage/>
-      </div>
-        <button
-          type="button"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          onClick={() => setMenuOpen((open) => !open)}
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "md:hidden",
-          )}
-        >
-          {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        </button>
+
+        {/* Right Side */}
+        <div className="flex items-center gap-3 sm:gap-5">
+          <ThemeToggle />
+
+          <NavSessionManage />
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+            className={cn(
+              buttonVariants({
+                variant: "ghost",
+                size: "icon",
+              }),
+              transparentNavbar
+                ? "text-white hover:bg-white/10 hover:text-white"
+                : "text-gray-900 hover:bg-white dark:text-white dark:hover:bg-white/10",
+              "md:hidden",
+            )}
+          >
+            {menuOpen ? (
+              <X aria-hidden="true" />
+            ) : (
+              <Menu aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </div>
 
+      {/* Mobile Navigation */}
       {menuOpen && (
         <div
           id="mobile-navigation"
-          className="border-t border-border/60 bg-background md:hidden"
+          className={cn(
+            "border-t backdrop-blur-xl md:hidden",
+            transparentNavbar
+              ? "border-white/10 bg-black/95 text-white"
+              : "border-gray-200 bg-gray-100 text-gray-900 dark:border-white/10 dark:bg-[#151518] dark:text-white",
+          )}
         >
           <nav
             aria-label="Mobile navigation"
@@ -118,10 +186,14 @@ export function Navbar () {
                   aria-current={active ? "page" : undefined}
                   onClick={() => setMenuOpen(false)}
                   className={cn(
-                    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                    active
-                      ? "bg-muted text-foreground"
-                      : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                    "rounded-md px-3 py-3 text-sm font-medium transition-colors",
+                    transparentNavbar
+                      ? active
+                        ? "bg-white/15 text-white"
+                        : "text-white/75 hover:bg-white/10 hover:text-white"
+                      : active
+                        ? "bg-purple-100 text-[#9b2ae5] dark:bg-purple-500/10 dark:text-[#c77aff]"
+                        : "text-gray-700 hover:bg-white dark:text-gray-300 dark:hover:bg-white/10",
                   )}
                 >
                   {item.label}
@@ -129,18 +201,30 @@ export function Navbar () {
               );
             })}
 
-            <div className="mt-3 flex flex-col gap-2 border-t border-border/60 pt-3">
+            <div
+              className={cn(
+                "mt-3 flex flex-col gap-2 border-t pt-3",
+                transparentNavbar
+                  ? "border-white/10"
+                  : "border-gray-200 dark:border-white/10",
+              )}
+            >
               <Link
                 href="/login"
                 onClick={() => setMenuOpen(false)}
-                className={buttonVariants({ variant: "outline" })}
+                className={buttonVariants({
+                  variant: "outline",
+                })}
               >
                 Login
               </Link>
+
               <Link
                 href="/register"
                 onClick={() => setMenuOpen(false)}
-                className={buttonVariants({ variant: "default" })}
+                className={buttonVariants({
+                  variant: "default",
+                })}
               >
                 Register
               </Link>

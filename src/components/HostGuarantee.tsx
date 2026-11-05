@@ -2,10 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  motion,
-  type Variants,
-} from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 import {
   BadgeCheck,
@@ -98,7 +95,6 @@ const commitments = [
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-// Left side animation
 const leftVariants: Variants = {
   hidden: { opacity: 0, x: -45 },
   visible: {
@@ -108,7 +104,6 @@ const leftVariants: Variants = {
   },
 };
 
-// Right side animation
 const rightVariants: Variants = {
   hidden: { opacity: 0, x: 45 },
   visible: {
@@ -118,7 +113,6 @@ const rightVariants: Variants = {
   },
 };
 
-// Bottom to top animation
 const bottomVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -128,7 +122,6 @@ const bottomVariants: Variants = {
   },
 };
 
-// Card stagger animation
 const cardContainer: Variants = {
   hidden: {},
   visible: {
@@ -164,17 +157,17 @@ export function HostGuarantee() {
   return (
     <section
       id="host-guarantee"
-      className="relative scroll-mt-20 overflow-hidden bg-neutral-950 py-20 text-white sm:py-24"
+      className="relative scroll-mt-20 overflow-hidden bg-[#faf9fc] py-20 text-[#18151d] dark:bg-[#09090b] dark:text-white sm:py-24"
     >
       {/* Background Effects */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-32 -right-24 size-96 rounded-full bg-[rgb(155,42,229)]/20 blur-3xl"
+        className="pointer-events-none absolute -top-32 -right-24 size-96 rounded-full bg-[rgb(155,42,229)]/10 blur-3xl dark:bg-[rgb(155,42,229)]/20"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-40 -left-24 size-96 rounded-full bg-[rgb(155,42,229)]/10 blur-3xl"
+        className="pointer-events-none absolute -bottom-40 -left-24 size-96 rounded-full bg-[rgb(155,42,229)]/5 blur-3xl dark:bg-[rgb(155,42,229)]/10"
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -198,7 +191,7 @@ export function HostGuarantee() {
             >
               <Badge
                 variant="outline"
-                className="h-6 gap-1.5 rounded-full border-white/15 bg-white/5 px-3 text-[11px] font-semibold tracking-[0.18em] text-white/80 uppercase"
+                className="h-6 gap-1.5 rounded-full border-purple-200 bg-purple-50 px-3 text-[11px] font-semibold tracking-[0.18em] text-purple-700 uppercase dark:border-white/15 dark:bg-white/5 dark:text-white/80"
               >
                 <ShieldCheck
                   aria-hidden="true"
@@ -223,7 +216,7 @@ export function HostGuarantee() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="mt-4 max-w-lg text-base leading-relaxed text-pretty text-white/70 sm:text-lg"
+              className="mt-4 max-w-lg text-base leading-relaxed text-pretty text-[#68616f] dark:text-white/70 sm:text-lg"
             >
               StudioSpace protects both sides of every booking — so hosts can
               share their space and creators can focus on the work.
@@ -236,14 +229,14 @@ export function HostGuarantee() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <TabsList className="mt-7 h-auto w-full max-w-xs gap-1 rounded-[10px] border border-white/15 bg-white/5 p-1">
+              <TabsList className="mt-7 h-auto w-full max-w-xs gap-1 rounded-[10px] border border-purple-100 bg-purple-50 p-1 dark:border-white/15 dark:bg-white/5">
                 {audiences.map((item) => (
                   <TabsTrigger
                     key={item.id}
                     value={item.id}
                     className={cn(
-                      "h-9 flex-1 rounded-lg px-4 text-sm font-bold text-white/60",
-                      "hover:text-white",
+                      "h-9 flex-1 rounded-lg px-4 text-sm font-bold text-[#77717e] dark:text-white/60",
+                      "hover:text-purple-700 dark:hover:text-white",
                       "data-active:bg-[rgb(155,42,229)] data-active:text-white data-active:shadow-none",
                       "after:hidden",
                     )}
@@ -260,7 +253,7 @@ export function HostGuarantee() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="mt-8 space-y-3 text-sm text-white/80 sm:text-base"
+              className="mt-8 space-y-3 text-sm text-[#49434f] dark:text-white/80 sm:text-base"
             >
               {commitments.map((commitment) => (
                 <motion.li
@@ -268,7 +261,7 @@ export function HostGuarantee() {
                   variants={bottomVariants}
                   className="flex items-center gap-3"
                 >
-                  <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-[rgb(155,42,229)]/15 text-[rgb(155,42,229)] ring-1 ring-[rgb(155,42,229)]/30">
+                  <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-purple-100 text-[rgb(155,42,229)] ring-1 ring-purple-200 dark:bg-[rgb(155,42,229)]/15 dark:ring-[rgb(155,42,229)]/30">
                     <Check aria-hidden="true" className="size-3.5" />
                   </span>
                   {commitment}
@@ -306,26 +299,26 @@ export function HostGuarantee() {
                         variants={cardVariants}
                         className="h-full"
                       >
-                        <Card className="h-full gap-4 rounded-2xl border-0 bg-white/5 py-6 text-white ring-1 ring-white/10 backdrop-blur transition-colors duration-300 hover:bg-white/8 hover:ring-[rgb(155,42,229)]/40">
+                        <Card className="h-full gap-4 rounded-2xl border border-purple-100 bg-white py-6 text-[#18151d] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-purple-200 hover:shadow-lg hover:shadow-purple-100/60 dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none dark:hover:border-[rgb(155,42,229)]/40 dark:hover:bg-white/8">
                           <CardHeader>
-                            <span className="inline-flex size-11 items-center justify-center rounded-[10px] bg-[rgb(155,42,229)]/15 text-[rgb(155,42,229)] ring-1 ring-[rgb(155,42,229)]/30">
+                            <span className="inline-flex size-11 items-center justify-center rounded-[10px] bg-purple-100 text-[rgb(155,42,229)] ring-1 ring-purple-200 dark:bg-[rgb(155,42,229)]/15 dark:ring-[rgb(155,42,229)]/30">
                               <Icon
                                 aria-hidden="true"
                                 className="size-5"
                               />
                             </span>
 
-                            <CardTitle className="mt-1 text-lg font-bold tracking-tight text-white">
+                            <CardTitle className="mt-1 text-lg font-bold tracking-tight text-[#18151d] dark:text-white">
                               {assurance.title}
                             </CardTitle>
 
-                            <CardDescription className="text-sm leading-relaxed text-white/60">
+                            <CardDescription className="text-sm leading-relaxed text-[#68616f] dark:text-white/60">
                               {assurance.copy[item.id]}
                             </CardDescription>
                           </CardHeader>
 
                           <CardContent className="mt-auto">
-                            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-white/40 uppercase">
+                            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-purple-700 uppercase dark:text-white/40">
                               <span
                                 aria-hidden="true"
                                 className="inline-flex size-1.5 rounded-full bg-[rgb(155,42,229)]"

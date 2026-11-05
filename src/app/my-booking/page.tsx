@@ -1,0 +1,195 @@
+
+import { IBooking } from "@/type/MyBooking";
+import Image from "next/image";
+import {
+  MapPin,
+  CalendarDays,
+  Clock,
+  DollarSign,
+} from "lucide-react";
+
+const MyBookingPage = async () => {
+  const res = await fetch("http://localhost:8000/mybooking", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch bookings");
+  }
+
+  const myBookings: IBooking[] = await res.json();
+
+  return (
+    <div className="mx-auto min-h-screen max-w-6xl px-5 py-12">
+      {/* Page Heading */}
+      <div className="mb-10">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-purple-600">
+          Your Reservations
+        </p>
+
+        <h1 className="text-3xl font-bold text-white sm:text-4xl">
+          My Bookings
+        </h1>
+
+        <p className="mt-3 max-w-xl text-sm leading-6 text-gray-400">
+          Keep track of your studio reservations, check booking details,
+          and manage your upcoming creative sessions.
+        </p>
+      </div>
+
+      {/* Empty State */}
+      {myBookings.length === 0 ? (
+        <div className="rounded-xl border border-gray-200 bg-white px-5 py-12 text-center">
+          <h2 className="text-xl font-semibold text-gray-900">
+            No Bookings Found
+          </h2>
+
+          <p className="mt-2 text-sm text-gray-500">
+            You haven't reserved any studio yet.
+            Explore our studios and book your next creative space.
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-5">
+          {myBookings.map((mybooking) => {
+            // Normalize booking status
+            const statusLabel =
+              mybooking.status?.trim() || "Unknown";
+
+            const status = statusLabel.toLowerCase();
+
+            // Status badge colors
+            const statusStyle =
+              status === "pending"
+                ? "bg-yellow-100 text-yellow-700"
+                : status === "confirmed"
+                ? "bg-green-100 text-green-700"
+                : status === "completed"
+                ? "bg-blue-100 text-blue-700"
+                : status === "cancelled"
+                ? "bg-red-100 text-red-700"
+                : "bg-gray-100 text-gray-700";
+
+            return (
+              <div
+                key={mybooking._id}
+                className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md sm:flex-row"
+              >
+                {/* Studio Image */}
+                <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-lg sm:h-52 sm:w-72">
+                  <Image
+                    src={mybooking.imageUrl}
+                    alt={mybooking.title}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Booking Information */}
+                <div className="flex flex-1 flex-col justify-between gap-3">
+                  <div>
+                    {/* Category and Status */}
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="text-sm font-semibold text-purple-600">
+                        {mybooking.category}
+                      </span>
+
+                      <span
+                        className={`rounded-full px-4 py-2 text-xs font-semibold ${statusStyle}`}
+                      >
+                        {statusLabel}
+                      </span>
+                    </div>
+
+                    {/* Studio Title */}
+                    <h2 className="mt-2 text-xl font-bold text-gray-900">
+                      {mybooking.title}
+                    </h2>
+
+                    {/* Location */}
+                    <p className="mt-1 flex items-center gap-1.5 text-sm text-gray-500">
+                      <MapPin size={16} />
+                      {mybooking.location}
+                    </p>
+
+                    {/* Overview */}
+                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-gray-500">
+                      {mybooking.overview}
+                    </p>
+                  </div>
+
+                  {/* Booking Details */}
+                  <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-gray-600">
+                    <p className="flex items-center gap-1.5">
+                      <CalendarDays
+                        size={17}
+                        className="text-purple-600"
+                      />
+                      {mybooking.data.date}
+                    </p>
+
+                    <p className="flex items-center gap-1.5">
+                      <Clock
+                        size={17}
+                        className="text-purple-600"
+                      />
+                      {mybooking.data.startTime} -{" "}
+                      {mybooking.data.endTime}
+                    </p>
+
+                    <p className="flex items-center gap-1.5">
+                      <DollarSign
+                        size={17}
+                        className="text-purple-600"
+                      />
+                      {mybooking.hourlyRate}/hr
+                    </p>
+
+                    <p>
+                      Deposit: ${mybooking.securityDeposit}
+                    </p>
+                  </div>
+
+                  {/* Amenities and Cancel Button */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
+                    <div className="flex flex-wrap gap-1.5">
+                      {mybooking.amenities
+                        .slice(0, 3)
+                        .map((amenity, index) => (
+                          <span
+                            key={index}
+                            className="rounded-md bg-gray-100 px-3 py-1.5 text-xs text-gray-600"
+                          >
+                            {amenity}
+                          </span>
+                        ))}
+
+                      {mybooking.amenities.length > 3 && (
+                        <span className="rounded-md bg-gray-100 px-3 py-1.5 text-xs text-gray-600">
+                          +{mybooking.amenities.length - 3} more
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Cancel Button */}
+                    {status === "pending" && (
+                      <button
+                        type="button"
+                        className="rounded-lg border border-red-200 px-4 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-50"
+                      >
+                        Cancel Booking
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MyBookingPage;

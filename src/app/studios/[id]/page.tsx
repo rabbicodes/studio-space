@@ -13,6 +13,7 @@ import {
   CalendarCheck,
   ArrowLeft,
 } from "lucide-react";
+import BookingModals from "@/components/BookingModals";
 
 interface StudioDetailsPageProps {
   params: Promise<{
@@ -226,13 +227,7 @@ const StudioDetailsPage = async ({
                 </div>
               </div>
 
-              <button
-                type="button"
-                className="mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-[#9b2ae5] px-5 py-3.5 font-semibold text-white transition hover:bg-[#8120c5]"
-              >
-                Book Workspace Now
-                <CalendarCheck size={18} />
-              </button>
+             <BookingModals studio = {studio}/>
             </div>
 
           </div>

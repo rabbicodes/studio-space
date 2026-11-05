@@ -62,7 +62,7 @@ const handleLogout = async () => {
           <DropdownMenuItem>Dashboard</DropdownMenuItem>
           <DropdownMenuItem><Link href='/add-studio'>Add New Studio</Link></DropdownMenuItem>
           <DropdownMenuItem>My Studio Listings</DropdownMenuItem>
-          <DropdownMenuItem>My Bookings</DropdownMenuItem>
+          <DropdownMenuItem><Link href='/my-booking'>My Bookings</Link></DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <Button onClick={handleLogout} className='bg-[rgb(155,42,229)] cursor-pointer px-4 py-2 text-white rounded-[10px] ml-3'>Log Out</Button>

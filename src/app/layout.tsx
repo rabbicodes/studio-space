@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Host_Grotesk } from "next/font/google";
 
+
 import { Navbar } from "@/components/Navbar";
 
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const outfit = Host_Grotesk({
@@ -24,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
+         <Toaster position="top-right" richColors />
       </body>
     </html>
   );

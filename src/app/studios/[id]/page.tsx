@@ -1,6 +1,7 @@
 
 import { IStudio } from "@/type/StudioType";
 import Image from "next/image";
+import Link from "next/link";
 import {
   MapPin,
   Users,
@@ -9,7 +10,8 @@ import {
   Tag,
   Star,
   CheckCircle,
-  Clock,
+  CalendarCheck,
+  ArrowLeft,
 } from "lucide-react";
 
 interface StudioDetailsPageProps {
@@ -30,11 +32,7 @@ const StudioDetailsPage = async ({
   }
 
   const data = await res.json();
-  const studio: IStudio = data.result || data;
-
-  if (!studio) {
-    throw new Error("Studio not found");
-  }
+  const studio: IStudio = data.result ?? data;
 
   const specifications = [
     {
@@ -70,27 +68,20 @@ const StudioDetailsPage = async ({
   ];
 
   return (
-    <section className="min-h-screen bg-[#09090b] px-4 py-12 text-white sm:px-6 lg:px-10">
-      <div className="mx-auto max-w-7xl">
+    <main className="min-h-screen bg-white py-10 text-gray-900 dark:bg-[#09090b] dark:text-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Studio Heading */}
-        <div className="mb-8">
-          <span className="rounded-full border border-[#9b2ae5]/30 bg-[#9b2ae5]/10 px-4 py-2 text-sm text-[#c77aff]">
-            {studio.category}
-          </span>
-
-          <h1 className="mt-5 text-3xl font-bold sm:text-4xl">
-            {studio.title}
-          </h1>
-
-          <p className="mt-3 flex items-center gap-2 text-gray-400">
-            <MapPin size={18} className="text-[#9b2ae5]" />
-            {studio.location}
-          </p>
-        </div>
+        {/* Back Button */}
+        <Link
+          href="/studios"
+          className="mb-6 inline-flex items-center gap-2 text-sm text-gray-500 transition hover:text-[#9b2ae5] dark:text-gray-400"
+        >
+          <ArrowLeft size={17} />
+          Back to Studios
+        </Link>
 
         {/* Studio Image */}
-        <div className="relative h-[280px] overflow-hidden rounded-2xl border border-white/10 sm:h-[450px]">
+        <div className="relative h-[280px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[450px] dark:border-white/10">
           <Image
             src={studio.imageUrl}
             alt={studio.title}
@@ -99,99 +90,156 @@ const StudioDetailsPage = async ({
             unoptimized
             className="object-cover"
           />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-          <div className="absolute bottom-5 left-5">
-            <p className="text-sm text-gray-200">
-              Explore Workspace
-            </p>
-            <h2 className="mt-1 text-2xl font-bold">
-              {studio.title}
-            </h2>
-          </div>
         </div>
 
-        {/* Workspace Specifications */}
-        <div className="mt-12">
-          <div className="mb-6">
-            <p className="text-sm font-semibold uppercase tracking-[3px] text-[#9b2ae5]">
-              Workspace Details
-            </p>
+        {/* Studio Header */}
+        <section className="mt-8">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="rounded-full bg-[#9b2ae5]/10 px-4 py-1.5 text-sm font-medium text-[#9b2ae5] dark:text-[#c77aff]">
+              {studio.category}
+            </span>
 
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
-              Full Specifications
-            </h2>
+            <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+              <Star size={16} className="fill-yellow-400 text-yellow-400" />
+              <span>{studio.rating ?? "Not rated yet"}</span>
+            </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {specifications.map((item) => {
-              const Icon = item.icon;
+          <h1 className="mt-4 text-3xl font-bold sm:text-4xl">
+            {studio.title}
+          </h1>
 
-              return (
-                <div
-                  key={item.title}
-                  className="group rounded-2xl border border-white/10 bg-[#151518] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#9b2ae5]/60"
-                >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#9b2ae5]/10 text-[#c77aff] transition group-hover:bg-[#9b2ae5]/20">
-                    <Icon size={24} />
-                  </div>
-
-                  <p className="text-sm text-gray-400">
-                    {item.title}
-                  </p>
-
-                  <h3 className="mt-2 break-words text-xl font-semibold text-white">
-                    {item.value}
-                  </h3>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+          <p className="mt-3 flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <MapPin size={18} />
+            {studio.location}
+          </p>
+        </section>
 
         {/* Overview */}
-        <div className="mt-12 rounded-2xl border border-white/10 bg-[#151518] p-6 sm:p-8">
-          <h2 className="mb-4 text-2xl font-bold">
-            About This Workspace
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold">
+            About This Studio
           </h2>
 
-          <p className="leading-8 text-gray-400">
-            {studio.overview}
-          </p>
-        </div>
+          <div className="mt-5 rounded-xl border border-gray-200 bg-white p-6 dark:border-white/10 dark:bg-[#151518]">
+            <p className="leading-7 text-gray-600 dark:text-gray-400">
+              {studio.overview}
+            </p>
+          </div>
+        </section>
 
         {/* Amenities */}
-        <div className="mt-12">
-          <p className="text-sm font-semibold uppercase tracking-[3px] text-[#9b2ae5]">
-            What's Included
-          </p>
-
-          <h2 className="mb-6 mt-2 text-2xl font-bold">
-            Available Amenities
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold">
+            Studio Amenities
           </h2>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {studio.amenities?.map((amenity, index) => (
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {studio.amenities.map((amenity, index) => (
               <div
-                key={`${amenity}-${index}`}
-                className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#151518] p-5 transition hover:border-[#9b2ae5]/50"
+                key={index}
+                className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10 dark:bg-[#151518]"
               >
                 <CheckCircle
                   size={20}
-                  className="shrink-0 text-[#c77aff]"
+                  className="shrink-0 text-[#9b2ae5] dark:text-[#c77aff]"
                 />
 
-                <span className="text-gray-300">
+                <span className="text-sm font-medium">
                   {amenity}
                 </span>
               </div>
             ))}
           </div>
-        </div>
+        </section>
+
+        {/* Workspace Specifications */}
+        <section className="mt-12">
+          <h2 className="mb-6 text-2xl font-bold">
+            Studio Specifications
+          </h2>
+
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+
+            {/* Specification Cards */}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {specifications.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={item.title}
+                    className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-[#9b2ae5]/50 dark:border-white/10 dark:bg-[#151518]"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#9b2ae5]/10 text-[#9b2ae5] dark:text-[#c77aff]">
+                      <Icon size={22} />
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {item.title}
+                      </p>
+
+                      <h3 className="mt-1 break-words text-base font-semibold">
+                        {item.value}
+                      </h3>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Booking Card */}
+            <div className="flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#151518]">
+              <div>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#9b2ae5]/10 text-[#9b2ae5] dark:text-[#c77aff]">
+                    <CalendarCheck size={22} />
+                  </div>
+
+                  <h3 className="text-lg font-semibold">
+                    Book Workspace
+                  </h3>
+                </div>
+
+                <div className="mt-8">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Hourly Rate
+                  </p>
+
+                  <p className="mt-1 text-3xl font-bold">
+                    ${studio.hourlyRate}
+                    <span className="ml-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+                      / hour
+                    </span>
+                  </p>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between border-t border-gray-200 pt-5 dark:border-white/10">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    Security Deposit
+                  </span>
+
+                  <span className="font-semibold">
+                    ${studio.securityDeposit}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-[#9b2ae5] px-5 py-3.5 font-semibold text-white transition hover:bg-[#8120c5]"
+              >
+                Book Workspace Now
+                <CalendarCheck size={18} />
+              </button>
+            </div>
+
+          </div>
+        </section>
 
       </div>
-    </section>
+    </main>
   );
 };
 

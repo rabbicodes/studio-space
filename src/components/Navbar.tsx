@@ -10,6 +10,7 @@ import logo from "@/assets/logo.png";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import NavSessionManage from "./NavSessionManage";
+import ThemeToggle from "./ThemeToggle";
 
 
 const navItems = [
@@ -79,8 +80,10 @@ export function Navbar () {
             );
           })}
         </nav>
-
+      <div className="flex gap-6 items-center">
+        <ThemeToggle/>
        <NavSessionManage/>
+      </div>
         <button
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}

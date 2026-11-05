@@ -9,6 +9,8 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import NavSessionManage from "./NavSessionManage";
+
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -29,9 +31,11 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function Navbar() {
+export function Navbar () {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+
 
   return (
     <header className="sticky mb-6 top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -76,18 +80,7 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <Link
-            href="/login"
-            className='px-4 py-2 '
-          >
-            Login
-          </Link>
-         <Link href='/register'
-         className="px-4 py-2 bg-[rgb(155,42,229)] text-white font-bold rounded-[10px]">Register
-         </Link>
-        </div>
-
+       <NavSessionManage/>
         <button
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}

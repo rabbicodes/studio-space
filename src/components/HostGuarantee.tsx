@@ -208,7 +208,7 @@ export function HostGuarantee() {
               viewport={{ once: true, amount: 0.2 }}
               className="mt-5 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
             >
-              Book with confidence. Host with backup.
+              <span className="text-purple-500">Book with confidence.</span> Host with backup.
             </motion.h2>
 
             <motion.p

@@ -53,7 +53,8 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       }
 
       // Separate studio ID
-      const { _id: studioId, ...studioData } = studio;
+      const { _id, ...studioData } = studio;
+      console.log(_id);
 
       const user = session.user;
 
@@ -61,7 +62,7 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       const bookingData = {
         data,
         ...studioData,
-        studioId,
+      
         userName: user.name,
         email: user.email,
         status: "Pending",

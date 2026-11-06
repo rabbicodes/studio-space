@@ -8,6 +8,7 @@ export default function Home() {
     <main>
       <Banner />
       <HowItWorks/>
+      
       <HostGuarantee />
     </main>
   );

@@ -7,6 +7,7 @@ import {
   Clock,
   DollarSign,
 } from "lucide-react";
+import CancelBooking from "@/components/CancelBooking";
 
 const MyBookingPage = async () => {
   const res = await fetch("http://localhost:8000/mybooking", {
@@ -23,15 +24,15 @@ const MyBookingPage = async () => {
     <div className="mx-auto min-h-screen max-w-6xl px-5 py-12">
       {/* Page Heading */}
       <div className="mb-10">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-purple-600">
+        <p className="mb-2 text-[32px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400">
           Your Reservations
         </p>
 
-        <h1 className="text-3xl font-bold text-white sm:text-4xl">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
           My Bookings
         </h1>
 
-        <p className="mt-3 max-w-xl text-sm leading-6 text-gray-400">
+        <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500 dark:text-gray-400">
           Keep track of your studio reservations, check booking details,
           and manage your upcoming creative sessions.
         </p>
@@ -39,13 +40,13 @@ const MyBookingPage = async () => {
 
       {/* Empty State */}
       {myBookings.length === 0 ? (
-        <div className="rounded-xl border border-gray-200 bg-white px-5 py-12 text-center">
-          <h2 className="text-xl font-semibold text-gray-900">
+        <div className="rounded-2xl border border-gray-200 bg-white px-5 py-12 text-center shadow-sm dark:border-white/10 dark:bg-[#15121c]">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
             No Bookings Found
           </h2>
 
-          <p className="mt-2 text-sm text-gray-500">
-            You haven't reserved any studio yet.
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            You haven&apos;t reserved any studio yet.
             Explore our studios and book your next creative space.
           </p>
         </div>
@@ -61,28 +62,28 @@ const MyBookingPage = async () => {
             // Status badge colors
             const statusStyle =
               status === "pending"
-                ? "bg-yellow-100 text-yellow-700"
+                ? "bg-purple-100 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400"
                 : status === "confirmed"
-                ? "bg-green-100 text-green-700"
+                ? "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400"
                 : status === "completed"
-                ? "bg-blue-100 text-blue-700"
+                ? "bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400"
                 : status === "cancelled"
-                ? "bg-red-100 text-red-700"
-                : "bg-gray-100 text-gray-700";
+                ? "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400"
+                : "bg-gray-100 text-gray-700 dark:bg-white/10 dark:text-gray-300";
 
             return (
               <div
                 key={mybooking._id}
-                className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md sm:flex-row"
+                className="group flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-purple-200 hover:shadow-lg dark:border-white/10 dark:bg-[#15121c] dark:shadow-[0_4px_25px_rgba(0,0,0,0.25)] dark:hover:border-purple-500/40 dark:hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] sm:flex-row"
               >
                 {/* Studio Image */}
-                <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-lg sm:h-52 sm:w-72">
+                <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-xl sm:h-52 sm:w-72">
                   <Image
                     src={mybooking.imageUrl}
                     alt={mybooking.title}
                     fill
                     unoptimized
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
@@ -91,7 +92,7 @@ const MyBookingPage = async () => {
                   <div>
                     {/* Category and Status */}
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="text-sm font-semibold text-purple-600">
+                      <span className="text-sm font-semibold text-gray-400 ">
                         {mybooking.category}
                       </span>
 
@@ -103,28 +104,28 @@ const MyBookingPage = async () => {
                     </div>
 
                     {/* Studio Title */}
-                    <h2 className="mt-2 text-xl font-bold text-gray-900">
+                    <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">
                       {mybooking.title}
                     </h2>
 
                     {/* Location */}
-                    <p className="mt-1 flex items-center gap-1.5 text-sm text-gray-500">
-                      <MapPin size={16} />
+                    <p className="mt-1 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+                      <MapPin size={16} className="text-purple-600 dark:text-purple-400" />
                       {mybooking.location}
                     </p>
 
                     {/* Overview */}
-                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-gray-500">
+                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
                       {mybooking.overview}
                     </p>
                   </div>
 
                   {/* Booking Details */}
-                  <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-gray-600">
+                  <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-gray-600 dark:text-gray-300">
                     <p className="flex items-center gap-1.5">
                       <CalendarDays
                         size={17}
-                        className="text-purple-600"
+                        className="text-purple-600 dark:text-purple-400"
                       />
                       {mybooking.data.date}
                     </p>
@@ -132,7 +133,7 @@ const MyBookingPage = async () => {
                     <p className="flex items-center gap-1.5">
                       <Clock
                         size={17}
-                        className="text-purple-600"
+                        className="text-purple-600 dark:text-purple-400"
                       />
                       {mybooking.data.startTime} -{" "}
                       {mybooking.data.endTime}
@@ -141,46 +142,40 @@ const MyBookingPage = async () => {
                     <p className="flex items-center gap-1.5">
                       <DollarSign
                         size={17}
-                        className="text-purple-600"
+                        className="text-purple-600 dark:text-purple-400"
                       />
                       {mybooking.hourlyRate}/hr
                     </p>
 
                     <p>
-                      Deposit: ${mybooking.securityDeposit}
+                      Security Deposit: ${mybooking.securityDeposit}
                     </p>
                   </div>
 
-                  {/* Amenities and Cancel Button */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
+                  {/* Amenities and Buttons */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3 dark:border-white/10">
+                    {/* Amenities */}
                     <div className="flex flex-wrap gap-1.5">
                       {mybooking.amenities
                         .slice(0, 3)
                         .map((amenity, index) => (
                           <span
                             key={index}
-                            className="rounded-md bg-gray-100 px-3 py-1.5 text-xs text-gray-600"
+                            className="rounded-md bg-gray-100 px-3 py-1.5 text-xs text-gray-600 dark:bg-white/5 dark:text-gray-300 dark:ring-1 dark:ring-white/10"
                           >
                             {amenity}
                           </span>
                         ))}
 
                       {mybooking.amenities.length > 3 && (
-                        <span className="rounded-md bg-gray-100 px-3 py-1.5 text-xs text-gray-600">
+                        <span className="rounded-md bg-gray-100 px-3 py-1.5 text-xs text-gray-600 dark:bg-white/5 dark:text-gray-300 dark:ring-1 dark:ring-white/10">
                           +{mybooking.amenities.length - 3} more
                         </span>
                       )}
                     </div>
 
-                    {/* Cancel Button */}
-                    {status === "pending" && (
-                      <button
-                        type="button"
-                        className="rounded-lg border border-red-200 px-4 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-50"
-                      >
-                        Cancel Booking
-                      </button>
-                    )}
+                    {/* Cancel and Receipt Buttons */}
+                    <CancelBooking mybooking={mybooking} />
                   </div>
                 </div>
               </div>

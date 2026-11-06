@@ -11,12 +11,9 @@ const StudiosPage = async () => {
     throw new Error("Data failed to fetch");
   }
 
-  const data = await res.json();
+  const studios:IStudio[] = await res.json();
 
-  const studios: IStudio[] = Array.isArray(data)
-    ? data
-    : data.result;
-
+ 
   return (
     <section className="relative isolate -mt-16 min-h-screen overflow-hidden bg-[#faf9fc] px-4 py-16 text-[#18151d] dark:bg-[#09090b] dark:text-white sm:px-6 lg:px-10">
       <div className="mx-auto max-w-7xl">

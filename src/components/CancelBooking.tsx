@@ -7,7 +7,7 @@ const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
   const handleStatusChange = async (status: string) => {
     try {
       const res = await fetch(
-        `http://localhost:8000/mybooking/${mybooking._id}`,
+        `http://localhost:8000/mybooking/${mybooking._id}/status`,
         {
           method: "PATCH",
           headers: {

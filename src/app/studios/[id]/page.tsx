@@ -127,8 +127,23 @@ const StudioDetailsPage = async ({
               {studio.overview}
             </p>
           </div>
+          
         </section>
+<section className="mt-12">
+          <h2 className="text-2xl font-bold">
+            Host Information 
+          </h2>
 
+          <div className="mt-5 rounded-xl border border-gray-200 bg-white p-6 dark:border-white/10 dark:bg-[#151518]">
+            <p className="leading-7 text-gray-600 dark:text-gray-400">
+             Host Name: {studio.username}
+            </p>
+            <p className="leading-7 text-gray-600 dark:text-gray-400">
+             Host Email: {studio.email}
+            </p>
+          </div>
+          
+        </section>
         {/* Amenities */}
         <section className="mt-12">
           <h2 className="text-2xl font-bold">

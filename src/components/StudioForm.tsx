@@ -18,6 +18,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
+
 
 const CATEGORIES = [
   "Photo Studio",
@@ -42,6 +45,7 @@ const AMENITIES = [
 const THEME = "rgb(155,42,229)";
 
 export default function StudioForm() {
+      const {data:session,error} = authClient.useSession()
   
 
   const [category, setCategory] = useState("");
@@ -61,6 +65,11 @@ export default function StudioForm() {
   ) => {
     e.preventDefault();
 
+;
+    const user = session?.user
+    if(error){
+      console.log('user is not valid'); 
+    }
 
     if (!category) {
       toast.error("Please select a category!");
@@ -80,6 +89,8 @@ export default function StudioForm() {
       imageUrl: formData.get("imageUrl"),
       amenities,
       overview: formData.get("overview"),
+      email:user?.email,
+      username:user?.name,
      
     };
 
@@ -107,6 +118,7 @@ export default function StudioForm() {
       setAmenities([]);
 
       console.log("Studio Data:", result);
+      redirect('/my-list')
 
     
   };

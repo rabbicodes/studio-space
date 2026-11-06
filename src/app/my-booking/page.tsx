@@ -8,13 +8,21 @@ import {
   DollarSign,
 } from "lucide-react";
 import CancelBooking from "@/components/CancelBooking";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 
 
   
 const MyBookingPage = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers() // you need to pass the headers object.
+})
 
-  const res = await fetch("http://localhost:8000/mybooking", {
+const email = session?.user?.email as string 
+
+
+  const res = await fetch(`http://localhost:8000/mybooking/${encodeURIComponent(email)}`, {
     cache: "no-store",
   });
 

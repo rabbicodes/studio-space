@@ -45,12 +45,7 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       }
 
       // Validate time
-      const { startTime, endTime } = data;
-
-      if (startTime >= endTime) {
-        toast.error("End time must be later than start time");
-        return;
-      }
+      
 
       // Separate studio ID
       const { _id, ...studioData } = studio;

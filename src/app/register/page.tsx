@@ -1,205 +1,260 @@
 
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Check, X } from "lucide-react"
+import { useState } from "react";
+import { Check, X, UserRound, Mail, Image, LockKeyhole } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import { authClient } from "@/lib/auth-client"
-import { toast } from "sonner"
-import { redirect } from "next/navigation"
-
-
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 const RegisterPage = () => {
+  const [password, setPassword] = useState("");
 
-const onSubmit = async(e: React.SyntheticEvent<HTMLFormElement>) => {
+  const hasMinLength = password.length >= 8;
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasNumber = /[0-6]/.test(password);
+
+  const isPasswordValid = hasMinLength && hasUppercase && hasNumber;
+
+  const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries())
-    console.log(data);
-    // Convert FormData to plain object
-  const { data: resData, error } = await authClient.signUp.email({
-  email: data.email as string,
-  password: data.password as string,
-  name: data.name as string,
-  image: data.image as string,
+    const data = Object.fromEntries(formData.entries());
 
-})
-console.log(resData);
-if(error){
-    toast.error(error.message)
-}else{
-    redirect('/login')
-}
+    const { data: resData, error } = await authClient.signUp.email({
+      email: data.email as string,
+      password: data.password as string,
+      name: data.name as string,
+      image: data.image as string,
+    });
 
-   
+    console.log(resData);
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Account created successfully!");
+      redirect("/login");
+    }
   };
 
-  const [password, setPassword] = useState("")
-
-  const hasMinLength = password.length >= 8
-  const hasUppercase = /[A-Z]/.test(password)
-  const hasNumber = /[0-7]/.test(password)
-
-  const isPasswordValid = hasMinLength && hasUppercase && hasNumber
-
   return (
-    <div className="max-w-2xl mx-auto pb-4">
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back Register</CardTitle>
-          <CardDescription>
-            Register with your Google account
-          </CardDescription>
-        </CardHeader>
+    <div className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden px-4 py-12">
 
-        <CardContent>
-          <form onSubmit={onSubmit}>
-            <FieldGroup>
-              <Field>
-                <Button variant="outline" type="button">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
+      {/* Background Decoration */}
+      <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#9b2ae5]/10 blur-[100px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-10 h-72 w-72 rounded-full bg-[#c77aff]/10 blur-[100px]" />
+
+      <div className="relative w-full max-w-lg">
+
+        <Card className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl shadow-purple-500/5 dark:border-white/10 dark:bg-[#17121d] dark:shadow-purple-950/20">
+
+          {/* Top Gradient */}
+          <div className="h-1.5 w-full bg-gradient-to-r from-[#8120c4] via-[#9b2ae5] to-[#c77aff]" />
+
+          <CardHeader className="space-y-3 px-6 pt-8 text-center sm:px-8">
+
+
+            <div className="space-y-1.5">
+              <CardTitle className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Create Your Account
+              </CardTitle>
+
+              <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
+                Join us today and get started with your journey.
+              </CardDescription>
+            </div>
+
+          </CardHeader>
+
+          <CardContent className="px-6 pb-8 sm:px-8">
+
+            <form onSubmit={onSubmit}>
+              <FieldGroup className="gap-5">
+
+                <FieldSeparator className="text-xs text-gray-400 *:data-[slot=field-separator-content]:bg-white dark:*:data-[slot=field-separator-content]:bg-[#17121d]">
+                  REGISTER WITH YOUR INFORMATION
+                </FieldSeparator>
+
+                {/* Name */}
+                <Field className="gap-2">
+                  <FieldLabel
+                    htmlFor="name"
+                    className="font-medium text-gray-700 dark:text-gray-200"
                   >
-                    <path
-                      d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-                      fill="currentColor"
+                    Full Name
+                  </FieldLabel>
+
+                  <div className="relative">
+                    <UserRound className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
+
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Enter your full name"
+                      required
+                      className="h-12 rounded-xl border-gray-200 bg-gray-50 pl-10 text-gray-900 transition-all focus-visible:border-[#9b2ae5] focus-visible:ring-[#9b2ae5]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-gray-500"
                     />
-                  </svg>
-                  Login with Google
-                </Button>
-              </Field>
+                  </div>
+                </Field>
 
-              <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
-                Or continue with
-              </FieldSeparator>
-
-              <Field>
-                <FieldLabel htmlFor="name">Name</FieldLabel>
-                <Input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Mr.Khan"
-                  required
-                />
-              </Field>
-
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                />
-              </Field>
-
-              <Field>
-                <FieldLabel htmlFor="image">Image Link</FieldLabel>
-                <Input
-                  id="image"
-                  name="image"
-                  type="url"
-                  placeholder="http://image.com"
-                  required
-                />
-              </Field>
-
-              <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
-                    href="#"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
+                {/* Email */}
+                <Field className="gap-2">
+                  <FieldLabel
+                    htmlFor="email"
+                    className="font-medium text-gray-700 dark:text-gray-200"
                   >
-                    Forgot your password?
-                  </a>
-                </div>
+                    Email Address
+                  </FieldLabel>
 
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                  <div className="relative">
+                    <Mail className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
 
-                <div className="space-y-1 text-sm">
-                  <p className={hasMinLength ? "text-green-600" : "text-muted-foreground"}>
-                    {hasMinLength ? (
-                      <Check className="inline size-4 mr-1" />
-                    ) : (
-                      <X className="inline size-4 mr-1" />
-                    )}
-                    At least 6 characters
-                  </p>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="example@email.com"
+                      required
+                      className="h-12 rounded-xl border-gray-200 bg-gray-50 pl-10 text-gray-900 transition-all focus-visible:border-[#9b2ae5] focus-visible:ring-[#9b2ae5]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-gray-500"
+                    />
+                  </div>
+                </Field>
 
-                  <p className={hasUppercase ? "text-green-600" : "text-muted-foreground"}>
-                    {hasUppercase ? (
-                      <Check className="inline size-4 mr-1" />
-                    ) : (
-                      <X className="inline size-4 mr-1" />
-                    )}
-                    At least one uppercase letter
-                  </p>
+                {/* Image */}
+                <Field className="gap-2">
+                  <FieldLabel
+                    htmlFor="image"
+                    className="font-medium text-gray-700 dark:text-gray-200"
+                  >
+                    Profile Image URL
+                  </FieldLabel>
 
-                  <p className={hasNumber ? "text-green-600" : "text-muted-foreground"}>
-                    {hasNumber ? (
-                      <Check className="inline size-4 mr-1" />
-                    ) : (
-                      <X className="inline size-4 mr-1" />
-                    )}
-                    At least one number
-                  </p>
-                </div>
-              </Field>
+                  <div className="relative">
+                    <Image className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
 
-              <Field>
-                <Button
-                  type="submit"
-                  className="bg-[#9b2ae5]"
-                  disabled={!isPasswordValid}
-                >
-                  Register
-                </Button>
+                    <Input
+                      id="image"
+                      name="image"
+                      type="url"
+                      placeholder="https://image.com/photo.jpg"
+                      required
+                      className="h-12 rounded-xl border-gray-200 bg-gray-50 pl-10 text-gray-900 transition-all focus-visible:border-[#9b2ae5] focus-visible:ring-[#9b2ae5]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-gray-500"
+                    />
+                  </div>
+                </Field>
 
-                <FieldDescription className="text-center">
-                  have an account? <a href="/login">Login</a>
-                </FieldDescription>
-              </Field>
-            </FieldGroup>
-          </form>
-        </CardContent>
-      </Card>
+                {/* Password */}
+                <Field className="gap-2">
+                  <FieldLabel
+                    htmlFor="password"
+                    className="font-medium text-gray-700 dark:text-gray-200"
+                  >
+                    Password
+                  </FieldLabel>
 
-      <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our{" "}
-        <a href="#">Terms of Service</a> and{" "}
-        <a href="#">Privacy Policy</a>.
-      </FieldDescription>
+                  <div className="relative">
+                    <LockKeyhole className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
+
+                    <Input
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Create a strong password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className="h-12 rounded-xl border-gray-200 bg-gray-50 pl-10 text-gray-900 transition-all focus-visible:border-[#9b2ae5] focus-visible:ring-[#9b2ae5]/20 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-gray-500"
+                    />
+                  </div>
+
+                  {/* Password Validation */}
+                  <div className="mt-2 space-y-2 rounded-xl border border-gray-100 bg-gray-50/80 p-3 dark:border-white/5 dark:bg-white/[0.03]">
+
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Password Requirements
+                    </p>
+
+                    <p className={`flex items-center gap-2 text-xs ${hasMinLength ? "text-green-600 dark:text-green-400" : "text-gray-500 dark:text-gray-400"}`}>
+                      {hasMinLength ? <Check size={15} /> : <X size={15} />}
+                      At least 8 characters
+                    </p>
+
+                    <p className={`flex items-center gap-2 text-xs ${hasUppercase ? "text-green-600 dark:text-green-400" : "text-gray-500 dark:text-gray-400"}`}>
+                      {hasUppercase ? <Check size={15} /> : <X size={15} />}
+                      At least one uppercase letter
+                    </p>
+
+                    <p className={`flex items-center gap-2 text-xs ${hasNumber ? "text-green-600 dark:text-green-400" : "text-gray-500 dark:text-gray-400"}`}>
+                      {hasNumber ? <Check size={15} /> : <X size={15} />}
+                      At least one number (0-9)
+                    </p>
+
+                  </div>
+                </Field>
+
+                {/* Submit */}
+                <Field className="gap-4 pt-1">
+
+                  <Button
+                    type="submit"
+                    disabled={!isPasswordValid}
+                    className="h-12 w-full rounded-xl bg-[#9b2ae5] text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition-all hover:bg-[#8120c4] hover:shadow-purple-500/30 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Create Account
+                    
+                  </Button>
+
+                  <FieldDescription className="text-center text-sm text-gray-500 dark:text-gray-400">
+                    Already have an account?{" "}
+                    <a
+                      href="/login"
+                      className="font-semibold text-[#9b2ae5] transition-colors hover:text-[#8120c4] hover:underline"
+                    >
+                      Login
+                    </a>
+                  </FieldDescription>
+
+                </Field>
+
+              </FieldGroup>
+            </form>
+          </CardContent>
+        </Card>
+
+        <p className="mt-5 px-4 text-center text-xs leading-6 text-gray-500 dark:text-gray-500">
+          By creating an account, you agree to our{" "}
+          <a href="#" className="font-medium text-[#9b2ae5] hover:underline">
+            Terms of Service
+          </a>{" "}
+          and{" "}
+          <a href="#" className="font-medium text-[#9b2ae5] hover:underline">
+            Privacy Policy
+          </a>.
+        </p>
+
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;

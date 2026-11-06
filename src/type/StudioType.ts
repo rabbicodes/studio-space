@@ -10,6 +10,8 @@ export interface IStudio {
   amenities: string[];
   overview: string;
   rating?: number;
+  email:string,
+  username:string,
 
   
 }

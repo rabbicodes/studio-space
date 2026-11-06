@@ -61,7 +61,7 @@ const handleLogout = async () => {
           
           <DropdownMenuItem>Dashboard</DropdownMenuItem>
           <DropdownMenuItem><Link href='/add-studio'>Add New Studio</Link></DropdownMenuItem>
-          <DropdownMenuItem>My Studio Listings</DropdownMenuItem>
+          <DropdownMenuItem><Link href='/my-list'>My Studio Listings</Link></DropdownMenuItem>
           <DropdownMenuItem><Link href='/my-booking'>My Bookings</Link></DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

@@ -9,7 +9,11 @@ import {
 } from "lucide-react";
 import CancelBooking from "@/components/CancelBooking";
 
+
+
+  
 const MyBookingPage = async () => {
+
   const res = await fetch("http://localhost:8000/mybooking", {
     cache: "no-store",
   });
@@ -176,6 +180,8 @@ const MyBookingPage = async () => {
 
                     {/* Cancel and Receipt Buttons */}
                     <CancelBooking mybooking={mybooking} />
+
+                    
                   </div>
                 </div>
               </div>

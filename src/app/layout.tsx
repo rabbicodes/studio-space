@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Footer from "@/components/Footer";
+
 
 const outfit = Host_Grotesk({
   subsets: ["latin"],
@@ -28,6 +30,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           {children}
+          <Footer/>
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>

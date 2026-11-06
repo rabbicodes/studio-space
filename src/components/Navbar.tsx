@@ -97,7 +97,7 @@ export function Navbar() {
                 : "text-gray-900 dark:text-white"
             )}
           >
-            Studio{" "}
+            Studio
             <span className="text-[#9b2ae5]">
               Space
             </span>

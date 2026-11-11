@@ -22,12 +22,13 @@ import {
 } from "@/components/ui/card";
 
 import { Badge } from "@/components/ui/badge";
+import { notFound } from "next/navigation";
 
 const BrowseCategories = async () => {
   const res = await fetch("http://localhost:8000/studios");
 
   if (!res.ok) {
-    throw new Error("Failed to fetch studios");
+    notFound()
   }
 
   const studios: IStudio[] = await res.json();

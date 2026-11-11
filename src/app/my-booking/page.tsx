@@ -10,6 +10,7 @@ import {
 import CancelBooking from "@/components/CancelBooking";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { notFound } from "next/navigation";
 
 
 
@@ -20,6 +21,7 @@ const MyBookingPage = async () => {
 })
 
 const email = session?.user?.email as string 
+const name = session?.user?.name as string
 
 
   const res = await fetch(`http://localhost:8000/mybooking/${encodeURIComponent(email)}`, {
@@ -27,7 +29,7 @@ const email = session?.user?.email as string
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch bookings");
+    notFound()
   }
 
   const myBookings: IBooking[] = await res.json();
@@ -48,6 +50,7 @@ const email = session?.user?.email as string
           Keep track of your studio reservations, check booking details,
           and manage your upcoming creative sessions.
         </p>
+       
       </div>
 
       {/* Empty State */}

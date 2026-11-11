@@ -1,12 +1,19 @@
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+
 :root {
+  color-scheme: light;
   --primary: #9b2ae5;
   --primary-foreground: #ffffff;
   --ring: #9b2ae5;
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -126,9 +133,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }

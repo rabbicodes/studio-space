@@ -2,6 +2,7 @@
 import { IStudio } from "@/type/StudioType";
 import Link from "next/link";
 import { ArrowUpRight, MapPin, Star } from "lucide-react";
+import { notFound } from "next/navigation";
 
 const FeaturedStudioPage = async () => {
   const res = await fetch("http://localhost:8000/featuredStudio", {
@@ -9,7 +10,7 @@ const FeaturedStudioPage = async () => {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch featured studios");
+    notFound()
   }
 
   const featuredes: IStudio[] = await res.json();

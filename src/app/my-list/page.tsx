@@ -16,6 +16,7 @@ import { auth } from "@/lib/auth";
 import { IBooking } from "@/type/MyBooking";
 import UpdateModalForMyLIstPage from "@/components/UpdateModalForMyLIstPage";
 import TrashModalForMyListPage from "@/components/TrashModalForMyListPage";
+import { notFound } from "next/navigation";
 
 const MyStudioListingPage = async () => {
   // Get logged-in user
@@ -39,7 +40,7 @@ const MyStudioListingPage = async () => {
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch studio listings");
+    notFound()
   }
 
   const mylists: IBooking[] = await res.json();

@@ -15,6 +15,7 @@ export default function Home() {
       <FeaturedStudioPage/>
       <HostGuarantee />
       <AboutUs/>
+      
     </main>
   );
 }

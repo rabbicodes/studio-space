@@ -36,7 +36,7 @@ const NavSessionManage = () => {
     router.replace("/");
   };
 
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session } = authClient.useSession();
 
   const user = session?.user;
 
@@ -44,9 +44,7 @@ const NavSessionManage = () => {
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
-  if (isPending) {
-    return <div>Loading...</div>;
-  }
+  
 
   return (
     <div className="hidden items-center gap-2 md:flex">
@@ -163,7 +161,7 @@ const NavSessionManage = () => {
         <>
           <Link
             href="/login"
-            className="rounded-xl px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5"
+            className="rounded-xl px-4 py-2 text-sm   font-medium bg-gray-100 text-gray-700 "
           >
             Login
           </Link>

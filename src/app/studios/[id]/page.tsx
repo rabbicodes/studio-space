@@ -14,6 +14,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import BookingModals from "@/components/BookingModals";
+import { notFound } from "next/navigation";
 
 interface StudioDetailsPageProps {
   params: Promise<{
@@ -29,7 +30,7 @@ const StudioDetailsPage = async ({
   const res = await fetch(`http://localhost:8000/studios/${id}`);
 
   if (!res.ok) {
-    throw new Error("Failed to fetch studio details");
+    notFound()
   }
 
   const data = await res.json();

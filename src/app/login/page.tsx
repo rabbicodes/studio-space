@@ -2,9 +2,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check, X, Sparkles, LockKeyhole } from "lucide-react";
+import { Check, X, LockKeyhole } from "lucide-react";
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,38 +22,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // Get previous page URL
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-
-    const { data: resData, error } = await authClient.signIn.email({
-      email: data.email as string,
-      password: data.password as string,
-    });
-
-    console.log(resData);
-
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.success("Login successful!");
-      router.replace("/");
-    }
-  };
-
-  const HandleGoogleSignIn = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
-  };
+  // Prevent external URL redirects
+  const safeUrl =
+    callbackUrl.startsWith("/") && !callbackUrl.startsWith("//")
+      ? callbackUrl
+      : "/";
 
   const [password, setPassword] = useState("");
 
@@ -62,17 +43,55 @@ const LoginPage = () => {
   const hasUppercase = /[A-Z]/.test(password);
   const hasNumber = /[0-9]/.test(password);
 
-  const isPasswordValid = hasMinLength && hasUppercase && hasNumber;
+  const isPasswordValid =
+    hasMinLength && hasUppercase && hasNumber;
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const { data: resData, error } = await authClient.signIn.email({
+        email: data.email as string,
+        password: data.password as string,
+      });
+
+      console.log(resData);
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      toast.success("Login successful!");
+      router.replace(safeUrl);
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong");
+    }
+  };
+
+  const HandleGoogleSignIn = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: safeUrl,
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("Google login failed");
+    }
+  };
 
   return (
     <div className="relative mx-auto mb-12 mt-10 w-full max-w-lg px-4">
-
       {/* Background Decoration */}
       <div className="pointer-events-none absolute -left-20 top-20 h-64 w-64 rounded-full bg-[#9b2ae5]/10 blur-[100px]" />
       <div className="pointer-events-none absolute -right-20 bottom-10 h-64 w-64 rounded-full bg-purple-500/10 blur-[100px]" />
 
       <Card className="relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-xl shadow-purple-900/5 dark:border-white/10 dark:bg-[#15111c] dark:shadow-black/20">
-
         {/* Top Accent */}
         <div className="h-1.5 w-full bg-gradient-to-r from-[#8120c4] via-[#9b2ae5] to-[#c77aff]" />
 
@@ -95,7 +114,6 @@ const LoginPage = () => {
         <CardContent className="px-6 pb-9 sm:px-9">
           <form onSubmit={onSubmit}>
             <FieldGroup className="gap-5">
-
               {/* Google Login */}
               <Field>
                 <Button
@@ -200,8 +218,7 @@ const LoginPage = () => {
                   disabled={!isPasswordValid}
                   className="h-12 w-full rounded-xl bg-[#9b2ae5] text-base font-semibold text-white shadow-lg shadow-[#9b2ae5]/20 transition-all hover:-translate-y-0.5 hover:bg-[#8120c4] hover:shadow-xl hover:shadow-[#9b2ae5]/25 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Login to Your Account
-                  <Sparkles size={17} />
+                  Login
                 </Button>
 
                 <FieldDescription className="pt-2 text-center text-sm text-gray-500 dark:text-gray-400">

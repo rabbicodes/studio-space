@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import React from 'react';
 
 
@@ -18,7 +19,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
   const { category } = await params;
   const res = await fetch(`http://localhost:8000/studios/category/${category}`);
   if (!res.ok) {
-    throw new Error('failed to fetch');
+    notFound()
   }
   const CategoriesData: IStudio[] = await res.json();
 

@@ -1,10 +1,10 @@
+
 "use client";
 
 import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useSyncExternalStore,
 } from "react";
@@ -47,19 +47,23 @@ export function ThemeProvider({
     getServerThemeSnapshot
   );
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.style.colorScheme = theme;
-  }, [theme]);
-
   const setTheme = useCallback((newTheme: Theme) => {
     localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+
+    document.documentElement.classList.toggle(
+      "dark",
+      newTheme === "dark"
+    );
+
     document.documentElement.style.colorScheme = newTheme;
+
     window.dispatchEvent(new Event("theme-change"));
   }, []);
 
-  const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
+  const value = useMemo(
+    () => ({ theme, setTheme }),
+    [theme, setTheme]
+  );
 
   return (
     <ThemeContext.Provider value={value}>

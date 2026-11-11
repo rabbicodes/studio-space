@@ -3,7 +3,6 @@
 
 import { CalendarCheck } from "lucide-react";
 import { toast } from "sonner";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -18,21 +17,23 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
 import { IStudio } from "@/type/StudioType";
 import { authClient } from "@/lib/auth-client";
+import { usePathname, useRouter } from "next/navigation";
 
 interface BookingModalsProps {
   studio: IStudio;
 }
 
 const BookingModals = ({ studio }: BookingModalsProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-
     const data = Object.fromEntries(formData.entries());
 
     try {
@@ -41,15 +42,15 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
 
       if (error || !session?.user) {
         toast.error("Please login first");
+
+        router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`);
         return;
       }
 
       // Validate time
-      
 
       // Separate studio ID
       const { _id, ...studioData } = studio;
-      console.log(_id);
 
       const user = session.user;
 
@@ -57,7 +58,6 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       const bookingData = {
         data,
         ...studioData,
-      
         userName: user.name,
         email: user.email,
         status: "Pending",
@@ -84,7 +84,6 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
 
       // Success
       console.log("Booking Result:", result);
-
       toast.success("Booking submitted successfully!");
 
       form.reset();
@@ -111,7 +110,6 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       <DialogContent className="sm:max-w-sm">
         <DialogHeader>
           <DialogTitle>Reserve Creative Slot</DialogTitle>
-
           <DialogDescription className="text-[#a947e9]">
             {studio.title}
           </DialogDescription>
@@ -121,7 +119,6 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
           <FieldGroup>
             <Field>
               <Label htmlFor="date">Shoot Date</Label>
-
               <Input
                 id="date"
                 name="date"
@@ -133,7 +130,6 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
 
             <Field>
               <Label htmlFor="startTime">Start Time</Label>
-
               <Input
                 id="startTime"
                 name="startTime"
@@ -144,7 +140,6 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
 
             <Field>
               <Label htmlFor="endTime">End Time</Label>
-
               <Input
                 id="endTime"
                 name="endTime"
@@ -161,10 +156,7 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
                   </Button>
                 }
               />
-
-              <Button type="submit">
-                Booking
-              </Button>
+              <Button type="submit">Booking</Button>
             </DialogFooter>
           </FieldGroup>
         </form>

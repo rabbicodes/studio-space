@@ -60,7 +60,7 @@ const TrashModalForMyListPage = ({ mylist }: { mylist: IBooking }) => {
           }
         />
 
-        <AlertDialogContent className="border border-purple-100 bg-white text-gray-900 shadow-2xl shadow-purple-500/10 dark:border-zinc-800 dark:bg-[#151518] dark:text-white sm:max-w-[425px]">
+        <AlertDialogContent className="border border-purple-100 bg-white text-gray-900 shadow-2xl shadow-purple-500/10 dark:border-zinc-800 dark:bg-[#151518] dark:text-white sm:max-w-106.25">
           <AlertDialogHeader>
             <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-500 dark:bg-red-500/10 dark:text-red-400">
               <Trash2 size={22} />

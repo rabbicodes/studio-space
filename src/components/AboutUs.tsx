@@ -70,7 +70,8 @@ const AboutUs = () => {
 
             <h2 className="max-w-xl text-4xl leading-tight font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-[56px]">
               Your Space, Your
-              <span className="block bg-gradient-to-r from-[#9b2ae5] to-[#c77aff] bg-clip-text text-transparent">
+              <span className="block bg-linear-to-r from-[#9b2ae5] to-[#c77aff] bg-clip-text text-transparent">
+
                 Creative Freedom.
               </span>
             </h2>
@@ -141,7 +142,7 @@ const AboutUs = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-[540px]"
+            className="relative mx-auto w-full max-w-135"
           >
             <div className="relative rounded-[30px] border border-[#9b2ae5]/15 bg-white p-4 shadow-2xl shadow-[#9b2ae5]/10 dark:border-white/10 dark:bg-[#15111c] md:p-6">
 
@@ -149,10 +150,10 @@ const AboutUs = () => {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="relative overflow-hidden rounded-[22px] bg-gradient-to-br from-[#361052] via-[#64239a] to-[#9b2ae5] p-7 text-white md:p-9"
+                className="relative overflow-hidden rounded-[22px] bg-linear-to-br from-[#361052] via-[#64239a] to-[#9b2ae5] p-7 text-white md:p-9"
               >
-                <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full border-[35px] border-white/10" />
-                <div className="absolute -bottom-20 -left-12 h-56 w-56 rounded-full border-[35px] border-white/10" />
+                <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full border-35 border-white/10" />
+                <div className="absolute -bottom-20 -left-12 h-56 w-56 rounded-full border-35 border-white/10" />
 
                 <div className="relative">
                   <div className="mb-12 flex items-center justify-between">
@@ -203,7 +204,7 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.2 }}
                   whileHover={{ y: -8 }}
-                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-5 dark:border-white/5 dark:bg-white/[0.04]"
+                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-5 dark:border-white/5 dark:bg-white/4"
                 >
                   <div className="mb-3 inline-flex rounded-xl bg-[#9b2ae5]/10 p-3 text-[#9b2ae5]">
                     <Building2 size={22} />
@@ -222,7 +223,7 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.35 }}
                   whileHover={{ y: -8 }}
-                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-5 dark:border-white/5 dark:bg-white/[0.04]"
+                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-5 dark:border-white/5 dark:bg-white/4"
                 >
                   <div className="mb-3 inline-flex rounded-xl bg-[#9b2ae5]/10 p-3 text-[#9b2ae5]">
                     <CalendarCheck size={22} />

@@ -26,7 +26,7 @@ const name = session?.user?.name as string
 console.log(name);
 
 const token = await getTokenFromServer()
-  const res = await fetch(`http://localhost:8000/mybooking/${encodeURIComponent(email)}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mybooking/${encodeURIComponent(email)}`, {
     cache: "no-store",
     headers:{
       authorization:`Bearer ${token}`

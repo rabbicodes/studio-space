@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const FeaturedStudioPage = async () => {
   const token = await getTokenFromServer()
-  const res = await fetch("http://localhost:8000/featuredStudio", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/featuredStudio`, {
     cache: "no-store",
     headers:{
       authorization:`Bearer ${token}`
@@ -67,6 +67,8 @@ const FeaturedStudioPage = async () => {
                   <Image
                     src={feature.imageUrl}
                     alt={feature.title}
+                    width={200}
+                    height={200}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
 

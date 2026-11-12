@@ -68,7 +68,7 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       console.log("Booking Data:", bookingData);
   const token = await getTokenFromClient();
       // Send booking request
-      const res = await fetch("http://localhost:8000/mybooking", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mybooking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

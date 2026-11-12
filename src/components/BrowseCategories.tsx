@@ -16,7 +16,7 @@ import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 
 const BrowseCategories = async () => {
   const token = await getTokenFromServer()
-  const res = await fetch("http://localhost:8000/studios",{
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios`,{
     headers:{
       authorization:`Bearer ${token}`
     }

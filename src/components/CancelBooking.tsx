@@ -9,7 +9,7 @@ const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
     const token = await getTokenFromClient()
     try {
       const res = await fetch(
-        `http://localhost:8000/mybooking/${mybooking._id}/status`,
+        `${process.env.NEXT_PUBLIC_API_URL}/mybooking/${mybooking._id}/status`,
         {
           method: "PATCH",
           headers: {

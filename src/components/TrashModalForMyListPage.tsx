@@ -26,7 +26,7 @@ const TrashModalForMyListPage = ({ mylist }: { mylist: IBooking }) => {
     const token = await getTokenFromClient();
     try {
       const res = await fetch(
-        `http://localhost:8000/studios/${mylist._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/studios/${mylist._id}`,
         {
           method: "DELETE",
           headers:{

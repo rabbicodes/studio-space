@@ -19,7 +19,7 @@ import React from 'react';
 const CategoryPage = async ({ params }: { params: Promise<{ category: string }> }) => {
   const { category } = await params;
   const token = await getTokenFromServer()
-  const res = await fetch(`http://localhost:8000/studios/category/${category}`,{
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios/category/${category}`,{
     headers:{
       authorization:`Bearer ${token}`
     }

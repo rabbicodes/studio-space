@@ -91,7 +91,7 @@ const StudioDetailsPage = async ({
         </Link>
 
         {/* Studio Image */}
-        <div className="relative h-[280px] overflow-hidden rounded-2xl border border-gray-200 sm:h-[450px] dark:border-white/10">
+        <div className="relative h-70 overflow-hidden rounded-2xl border border-gray-200 sm:h-112.5 dark:border-white/10">
           <Image
             src={studio.imageUrl}
             alt={studio.title}
@@ -205,7 +205,7 @@ const StudioDetailsPage = async ({
                         {item.title}
                       </p>
 
-                      <h3 className="mt-1 break-words text-base font-semibold">
+                      <h3 className="mt-1 wrap-break  text-base font-semibold">
                         {item.value}
                       </h3>
                     </div>

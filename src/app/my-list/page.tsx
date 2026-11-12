@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   Plus,
   MapPin,
-  Trash2,
+  
   Building2,
   Users,
   Wallet,
@@ -171,7 +171,7 @@ const token = await getTokenFromServer();
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[1050px] text-left">
+              <table className="w-full min-w-262.5 text-left">
 
                 {/* Columns */}
                 <thead className="bg-muted/50 text-xs uppercase tracking-wider text-muted-foreground">
@@ -229,7 +229,7 @@ const token = await getTokenFromServer();
                           </div>
 
                           <div>
-                            <p className="max-w-[180px] truncate text-sm font-semibold">
+                            <p className="max-w-45 truncate text-sm font-semibold">
                               {mylist.title}
                             </p>
 
@@ -242,7 +242,7 @@ const token = await getTokenFromServer();
 
                       {/* Owner Email */}
                       <td className="px-5 py-4">
-                        <div className="max-w-[190px]">
+                        <div className="max-w-47.5">
                           <p className="truncate text-sm font-medium">
                              {email}
                           </p>
@@ -255,7 +255,7 @@ const token = await getTokenFromServer();
 
                       {/* Location */}
                       <td className="px-5 py-4">
-                        <div className="flex max-w-[160px] items-center gap-2 text-sm text-muted-foreground">
+                        <div className="flex max-w-40 items-center gap-2 text-sm text-muted-foreground">
                           <MapPin
                             size={15}
                             className="shrink-0 text-purple-500"

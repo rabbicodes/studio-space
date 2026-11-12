@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin, Star } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getTokenFromServer } from "@/lib/getrTokenFromServer";
+import Image from "next/image";
 
 const FeaturedStudioPage = async () => {
   const token = await getTokenFromServer()
@@ -63,14 +64,14 @@ const FeaturedStudioPage = async () => {
               >
                 {/* Studio Image */}
                 <div className="relative h-60 overflow-hidden">
-                  <img
+                  <Image
                     src={feature.imageUrl}
                     alt={feature.title}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
 
                   {/* Image Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/10" />
 
                   {/* Category Badge */}
                   <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-purple-700 shadow-sm">

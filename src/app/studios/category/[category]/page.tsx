@@ -5,7 +5,7 @@ import {
   MapPin,
   Star,
   
-  Sparkles,
+  
   ChevronRight,
   ArrowLeft,
 } from 'lucide-react';
@@ -57,7 +57,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
 
           <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">
             Explore{" "}
-            <span className="bg-gradient-to-r from-[#9b2ae5] to-[#c77aff] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#9b2ae5] to-[#c77aff] bg-clip-text text-transparent">
               {categoryName}
             </span>
           </h1>
@@ -101,7 +101,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
                 />
 
                 {/* Image overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
+                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
 
                 <span className="absolute left-4 top-4 rounded-full border border-purple-200 bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#8120c4] backdrop-blur-md dark:border-[#9b2ae5]/30 dark:bg-black/60 dark:text-[#c77aff]">
                   {studio.category}
@@ -142,7 +142,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
 
                   <Link
                     href={`/studios/${studio._id}`}
-                    className="group/btn flex items-center gap-2 rounded-xl bg-gradient-to-br from-[#9b2ae5] to-[#6d1db0] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#9b2ae5]/25 outline-none transition-all duration-300 hover:shadow-[#9b2ae5]/45 focus-visible:ring-2 focus-visible:ring-[#9b2ae5] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
+                    className="group/btn flex items-center gap-2 rounded-xl bg-linear-to-br from-[#9b2ae5] to-[#6d1db0] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#9b2ae5]/25 outline-none transition-all duration-300 hover:shadow-[#9b2ae5]/45 focus-visible:ring-2 focus-visible:ring-[#9b2ae5] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
                   >
                     View Details
                     <ArrowUpRight

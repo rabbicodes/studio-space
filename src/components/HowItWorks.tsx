@@ -17,7 +17,7 @@ import {
   CheckCircle2,
   Clapperboard,
   ArrowRight,
-  Sparkles,
+  
   MoveDown,
   Zap,
 } from "lucide-react";

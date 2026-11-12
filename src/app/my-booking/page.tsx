@@ -23,6 +23,7 @@ const MyBookingPage = async () => {
 
 const email = session?.user?.email as string 
 const name = session?.user?.name as string
+console.log(name);
 
 const token = await getTokenFromServer()
   const res = await fetch(`http://localhost:8000/mybooking/${encodeURIComponent(email)}`, {

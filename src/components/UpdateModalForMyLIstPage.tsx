@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useState, type FormEvent, type CSSProperties } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useState, type CSSProperties } from "react";
+import { redirect } from "next/navigation";
 import { Pencil } from "lucide-react";
 import { toast } from "sonner";
 

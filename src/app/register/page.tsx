@@ -2,7 +2,16 @@
 "use client";
 
 import { useState } from "react";
-import { Check, X, UserRound, Mail, Image, LockKeyhole } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+import {
+  Check,
+  X,
+  UserRound,
+  Mail,
+  LockKeyhole,
+  Image as ImageIcon,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 import {
   Field,
   FieldDescription,
@@ -19,40 +29,61 @@ import {
   FieldLabel,
   FieldSeparator,
 } from "@/components/ui/field";
+
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
 
 const RegisterPage = () => {
+  const router = useRouter();
+
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const hasMinLength = password.length >= 8;
   const hasUppercase = /[A-Z]/.test(password);
-  const hasNumber = /[0-6]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
 
-  const isPasswordValid = hasMinLength && hasUppercase && hasNumber;
+  const isPasswordValid =
+    hasMinLength && hasUppercase && hasNumber;
 
-  const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    if (!isPasswordValid) {
+      toast.error("Please enter a valid password");
+      return;
+    }
 
-    const { data: resData, error } = await authClient.signUp.email({
-      email: data.email as string,
-      password: data.password as string,
-      name: data.name as string,
-      image: data.image as string,
-    });
+    setIsLoading(true);
 
-    console.log(resData);
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(formData.entries());
 
-    if (error) {
-      toast.error(error.message);
-    } else {
+      const { data: resData, error } =
+        await authClient.signUp.email({
+          email: data.email as string,
+          password: data.password as string,
+          name: data.name as string,
+          image: data.image as string,
+        });
+
+      console.log(resData);
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
       toast.success("Account created successfully!");
-      redirect("/login");
+      router.push("/login");
+
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,11 +99,9 @@ const RegisterPage = () => {
         <Card className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl shadow-purple-500/5 dark:border-white/10 dark:bg-[#17121d] dark:shadow-purple-950/20">
 
           {/* Top Gradient */}
-          <div className="h-1.5 w-full bg-gradient-to-r from-[#8120c4] via-[#9b2ae5] to-[#c77aff]" />
+          <div className="h-1.5 w-full bg-linear-to-r from-[#8120c4] via-[#9b2ae5] to-[#c77aff]" />
 
           <CardHeader className="space-y-3 px-6 pt-8 text-center sm:px-8">
-
-
             <div className="space-y-1.5">
               <CardTitle className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Create Your Account
@@ -82,7 +111,6 @@ const RegisterPage = () => {
                 Join us today and get started with your journey.
               </CardDescription>
             </div>
-
           </CardHeader>
 
           <CardContent className="px-6 pb-8 sm:px-8">
@@ -140,7 +168,7 @@ const RegisterPage = () => {
                   </div>
                 </Field>
 
-                {/* Image */}
+                {/* Profile Image */}
                 <Field className="gap-2">
                   <FieldLabel
                     htmlFor="image"
@@ -150,7 +178,7 @@ const RegisterPage = () => {
                   </FieldLabel>
 
                   <div className="relative">
-                    <Image className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
+                    <ImageIcon className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
 
                     <Input
                       id="image"
@@ -188,7 +216,7 @@ const RegisterPage = () => {
                   </div>
 
                   {/* Password Validation */}
-                  <div className="mt-2 space-y-2 rounded-xl border border-gray-100 bg-gray-50/80 p-3 dark:border-white/5 dark:bg-white/[0.03]">
+                  <div className="mt-2 space-y-2 rounded-xl border border-gray-100 bg-gray-50/80 p-3 dark:border-white/5 dark:bg-white/3">
 
                     <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                       Password Requirements
@@ -214,18 +242,17 @@ const RegisterPage = () => {
 
                 {/* Submit */}
                 <Field className="gap-4 pt-1">
-
                   <Button
                     type="submit"
-                    disabled={!isPasswordValid}
+                    disabled={!isPasswordValid || isLoading}
                     className="h-12 w-full rounded-xl bg-[#9b2ae5] text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition-all hover:bg-[#8120c4] hover:shadow-purple-500/30 disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    Create Account
-                    
+                    {isLoading ? "Creating Account..." : "Create Account"}
                   </Button>
 
                   <FieldDescription className="text-center text-sm text-gray-500 dark:text-gray-400">
                     Already have an account?{" "}
+
                     <a
                       href="/login"
                       className="font-semibold text-[#9b2ae5] transition-colors hover:text-[#8120c4] hover:underline"
@@ -233,20 +260,22 @@ const RegisterPage = () => {
                       Login
                     </a>
                   </FieldDescription>
-
                 </Field>
 
               </FieldGroup>
             </form>
+
           </CardContent>
         </Card>
 
         <p className="mt-5 px-4 text-center text-xs leading-6 text-gray-500 dark:text-gray-500">
           By creating an account, you agree to our{" "}
+
           <a href="#" className="font-medium text-[#9b2ae5] hover:underline">
             Terms of Service
           </a>{" "}
           and{" "}
+
           <a href="#" className="font-medium text-[#9b2ae5] hover:underline">
             Privacy Policy
           </a>.

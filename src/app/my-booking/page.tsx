@@ -11,6 +11,7 @@ import CancelBooking from "@/components/CancelBooking";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
+import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 
 
 
@@ -23,9 +24,12 @@ const MyBookingPage = async () => {
 const email = session?.user?.email as string 
 const name = session?.user?.name as string
 
-
+const token = await getTokenFromServer()
   const res = await fetch(`http://localhost:8000/mybooking/${encodeURIComponent(email)}`, {
     cache: "no-store",
+    headers:{
+      authorization:`Bearer ${token}`
+    }
   });
 
   if (!res.ok) {

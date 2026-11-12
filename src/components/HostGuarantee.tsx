@@ -157,7 +157,7 @@ export function HostGuarantee() {
   return (
     <section
       id="host-guarantee"
-      className="relative scroll-mt-20 overflow-hidden bg-[#faf9fc] py-20 text-[#18151d] dark:bg-[#09090b] dark:text-white sm:py-24"
+      className="relative scroll-mt-20 max-w-7xl mx-auto overflow-hidden bg-[#faf9fc] py-20 text-[#18151d] dark:bg-[#09090b] dark:text-white sm:py-24"
     >
       {/* Background Effects */}
       <div
@@ -193,10 +193,7 @@ export function HostGuarantee() {
                 variant="outline"
                 className="h-6 gap-1.5 rounded-full border-purple-200 bg-purple-50 px-3 text-[11px] font-semibold tracking-[0.18em] text-purple-700 uppercase dark:border-white/15 dark:bg-white/5 dark:text-white/80"
               >
-                <ShieldCheck
-                  aria-hidden="true"
-                  className="size-3.5 text-[rgb(155,42,229)]"
-                />
+                
                 Host guarantee & creator support
               </Badge>
             </motion.div>

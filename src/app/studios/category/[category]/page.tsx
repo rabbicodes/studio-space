@@ -1,3 +1,4 @@
+import { getTokenFromServer } from '@/lib/getrTokenFromServer';
 import { IStudio } from '@/type/StudioType';
 import {
   ArrowUpRight,
@@ -17,7 +18,12 @@ import React from 'react';
 
 const CategoryPage = async ({ params }: { params: Promise<{ category: string }> }) => {
   const { category } = await params;
-  const res = await fetch(`http://localhost:8000/studios/category/${category}`);
+  const token = await getTokenFromServer()
+  const res = await fetch(`http://localhost:8000/studios/category/${category}`,{
+    headers:{
+      authorization:`Bearer ${token}`
+    }
+  });
   if (!res.ok) {
     notFound()
   }

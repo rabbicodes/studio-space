@@ -118,7 +118,7 @@ const HowItWorks = () => {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="relative h-[400vh] bg-[#faf9fc] text-[#18151d] dark:bg-[#09090b] dark:text-white"
+      className="relative h-[400vh] max-w-7xl mx-auto bg-[#faf9fc] text-[#18151d] dark:bg-[#09090b] dark:text-white"
     >
       <div className="sticky top-0 h-dvh overflow-hidden">
         {/* pt-20 keeps the content clear of the sticky navbar.
@@ -126,10 +126,7 @@ const HowItWorks = () => {
         <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-4 pb-5 pt-20 sm:px-6 lg:px-8">
           {/* Heading */}
           <div className="mb-3 shrink-0 text-center sm:mb-5">
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-100/70 px-3 py-1.5 text-xs font-medium text-[#9b2ae5] dark:border-purple-500/20 dark:bg-purple-500/10 sm:text-sm [@media(max-height:700px)]:hidden">
-              <Sparkles size={14} />
-              Simple Process
-            </div>
+         
 
             <h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
               How It <span className="text-[#9b2ae5]">Works</span>

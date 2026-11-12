@@ -52,7 +52,7 @@ export function Banner() {
   return (
    <section
   aria-label="Featured creative spaces"
-  className="relative -mt-16 isolate overflow-hidden bg-neutral-950 text-white"
+  className="relative -mt-16 isolate max-w-7xl mx-auto overflow-hidden bg-neutral-950 text-white"
 >
       <h1 className="sr-only">
         StudioSpace — book creative studio spaces by the hour

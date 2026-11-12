@@ -45,7 +45,7 @@ const AboutUs = () => {
   return (
     <section
       id="about-us"
-      className="relative overflow-hidden bg-[#faf8fd] py-20 dark:bg-[#09070e] md:py-28"
+      className="relative max-w-7xl mx-auto overflow-hidden bg-[#faf8fd] py-20 dark:bg-[#09070e] md:py-28"
     >
       {/* Background Decorations */}
       <div className="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-[#9b2ae5]/10 blur-[100px]" />
@@ -62,7 +62,7 @@ const AboutUs = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#9b2ae5]/20 bg-[#9b2ae5]/5 px-4 py-2">
-              <Sparkles size={15} className="text-[#9b2ae5]" />
+              
               <span className="text-sm font-semibold text-[#9b2ae5]">
                 GET TO KNOW US
               </span>

@@ -34,8 +34,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t border-gray-200 bg-gray-50 text-gray-700 dark:border-white/10 dark:bg-[#111015] dark:text-gray-300">
-      <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 lg:py-16">
+    <footer className="border-t mx-auto max-w-7xl border-gray-200 bg-gray-50 text-gray-700 dark:border-white/10 dark:bg-[#111015] dark:text-gray-300">
+      <div className=" px-5 py-14 md:px-8 lg:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
 
           {/* Brand & Mission */}

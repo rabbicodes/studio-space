@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { IStudio } from "@/type/StudioType";
 import { authClient } from "@/lib/auth-client";
 import { usePathname, useRouter } from "next/navigation";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface BookingModalsProps {
   studio: IStudio;
@@ -64,12 +65,13 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       };
 
       console.log("Booking Data:", bookingData);
-
+  const token = await getTokenFromClient();
       // Send booking request
       const res = await fetch("http://localhost:8000/mybooking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization:`Bearer ${token}`
         },
         body: JSON.stringify(bookingData),
       });

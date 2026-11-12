@@ -1,16 +1,5 @@
 import { IStudio } from "@/type/StudioType";
 import Link from "next/link";
-import React from "react";
-import {
-  ArrowUpRight,
-  Camera,
-  Mic2,
-  Music2,
-  Palette,
-  Video,
-  Sparkles,
-  Shapes,
-} from "lucide-react";
 
 import {
   Card,
@@ -23,9 +12,15 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
+import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 
 const BrowseCategories = async () => {
-  const res = await fetch("http://localhost:8000/studios");
+  const token = await getTokenFromServer()
+  const res = await fetch("http://localhost:8000/studios",{
+    headers:{
+      authorization:`Bearer ${token}`
+    }
+  });
 
   if (!res.ok) {
     notFound()
@@ -52,35 +47,26 @@ const BrowseCategories = async () => {
     }, {})
   );
 
-  // Category icons
-  const getCategoryIcon = (category: string) => {
-    const name = category.toLowerCase();
+  
 
-    if (name.includes("photo")) return Camera;
-    if (name.includes("podcast")) return Mic2;
-    if (name.includes("music")) return Music2;
-    if (name.includes("video")) return Video;
-    if (name.includes("art")) return Palette;
 
-    return Shapes;
-  };
 
   return (
-    <section className="space-y-12">
+    <section className="space-y-12 max-w-7xl mx-auto">
       {/* Section Heading */}
       <div className="mx-auto max-w-2xl text-center">
         <Badge
           variant="outline"
           className="mb-4 gap-2 border-purple-500/30 bg-purple-500/10 px-3 py-1 text-purple-700 dark:text-purple-300"
         >
-          <Sparkles size={14} />
+          
           {categories.length}{" "}
           {categories.length === 1 ? "Category" : "Categories"}
         </Badge>
 
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
           Browse Studios by{" "}
-          <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-fuchsia-400 dark:to-violet-400">
+          <span className="bg-linear-to-r from-purple-600 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-fuchsia-400 dark:to-violet-400">
             Category
           </span>
         </h2>
@@ -94,7 +80,7 @@ const BrowseCategories = async () => {
       {/* Category Cards */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map(({ category, overview, count }, index) => {
-          const Icon = getCategoryIcon(category);
+          
 
           return (
             <Link
@@ -109,10 +95,8 @@ const BrowseCategories = async () => {
 
                 <CardHeader className="relative">
                   <div className="flex items-center justify-between">
-                    {/* Category Icon */}
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-fuchsia-500 text-white shadow-lg shadow-purple-500/20 transition-transform duration-300 group-hover:scale-110">
-                      <Icon size={26} strokeWidth={1.8} />
-                    </div>
+                    
+                  
 
                     {/* Studio Count */}
                     <Badge
@@ -142,9 +126,6 @@ const BrowseCategories = async () => {
                       Explore Studios
                     </span>
 
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-100 text-purple-600 transition-all duration-300 group-hover:translate-x-1 group-hover:bg-purple-600 group-hover:text-white dark:bg-purple-500/10 dark:text-purple-400 dark:group-hover:bg-purple-600 dark:group-hover:text-white">
-                      <ArrowUpRight size={18} />
-                    </div>
                   </div>
                 </CardFooter>
               </Card>

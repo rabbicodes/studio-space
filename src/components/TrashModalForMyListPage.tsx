@@ -17,16 +17,21 @@ import {
 import { IBooking } from "@/type/MyBooking";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const TrashModalForMyListPage = ({ mylist }: { mylist: IBooking }) => {
   const router = useRouter();
 
   const handleDeleteContinue = async () => {
+    const token = await getTokenFromClient();
     try {
       const res = await fetch(
         `http://localhost:8000/studios/${mylist._id}`,
         {
           method: "DELETE",
+          headers:{
+            authorization:`Bearer ${token}`
+          }
         }
       );
 

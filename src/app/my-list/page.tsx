@@ -17,6 +17,7 @@ import { IBooking } from "@/type/MyBooking";
 import UpdateModalForMyLIstPage from "@/components/UpdateModalForMyLIstPage";
 import TrashModalForMyListPage from "@/components/TrashModalForMyListPage";
 import { notFound } from "next/navigation";
+import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 
 const MyStudioListingPage = async () => {
   // Get logged-in user
@@ -30,12 +31,15 @@ const MyStudioListingPage = async () => {
   if (!email) {
     throw new Error("User email not found");
   }
-
+const token = await getTokenFromServer();
   // Fetch studio listings
   const res = await fetch(
     `http://localhost:8000/studios/listing/${encodeURIComponent(email)}`,
     {
       cache: "no-store",
+      headers:{
+        authorization:`Bearer ${token}`
+      }
     }
   );
 

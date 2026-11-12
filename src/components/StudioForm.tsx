@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 
 const CATEGORIES = [
@@ -79,7 +80,7 @@ export default function StudioForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const data = {
+    const datas = {
       title: formData.get("title"),
       category,
       hourlyRate: Number(formData.get("hourlyRate")),
@@ -95,13 +96,15 @@ export default function StudioForm() {
     };
 
     
+const token = await getTokenFromClient()
 
       const res = await fetch("http://localhost:8000/studio", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization:`Bearer ${token}`
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(datas),
       });
 
       const result = await res.json();

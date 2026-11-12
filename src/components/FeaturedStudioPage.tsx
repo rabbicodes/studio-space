@@ -3,10 +3,15 @@ import { IStudio } from "@/type/StudioType";
 import Link from "next/link";
 import { ArrowUpRight, MapPin, Star } from "lucide-react";
 import { notFound } from "next/navigation";
+import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 
 const FeaturedStudioPage = async () => {
+  const token = await getTokenFromServer()
   const res = await fetch("http://localhost:8000/featuredStudio", {
     cache: "no-store",
+    headers:{
+      authorization:`Bearer ${token}`
+    }
   });
 
   if (!res.ok) {

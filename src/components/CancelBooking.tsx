@@ -1,10 +1,12 @@
 "use client";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { IBooking } from "@/type/MyBooking";
 import { useRouter } from "next/navigation";
 
 const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
   const router = useRouter();
   const handleStatusChange = async (status: string) => {
+    const token = await getTokenFromClient()
     try {
       const res = await fetch(
         `http://localhost:8000/mybooking/${mybooking._id}/status`,
@@ -12,6 +14,7 @@ const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            authorization:`Bearer ${token}`
           },
           body: JSON.stringify({ status }),
         },

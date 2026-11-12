@@ -3,11 +3,17 @@ import { IStudio } from "@/type/StudioType";
 
 import ExploredStudiosSectionFitering from "@/components/ExploredStudiosSectionFitering";
 import { notFound } from "next/navigation";
+import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 
 
 
 const StudiosPage = async () => {
-  const res = await fetch("http://localhost:8000/studios");
+  const token = await getTokenFromServer()
+  const res = await fetch("http://localhost:8000/studios",{
+    headers:{
+      authorization:`Bearer ${token}`
+    }
+  });
 
   if (!res.ok) {
 notFound()

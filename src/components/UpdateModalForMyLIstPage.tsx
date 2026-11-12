@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { IBooking } from "@/type/MyBooking";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const CATEGORIES = [
   "Photo Studio",
@@ -82,13 +83,14 @@ const data = {
   category,
   amenities,
 };
-
+const token = await getTokenFromClient()
 const res = await fetch(
   `http://localhost:8000/studios/${listing._id}`,
   {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      authorization:`Bearer ${token}`
     },
     body: JSON.stringify(data),
   }

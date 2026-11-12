@@ -138,11 +138,11 @@ const token = await getTokenFromClient()
           "--ring": THEME,
         } as React.CSSProperties
       }
-      className="mx-auto w-full max-w-2xl space-y-6 overflow-hidden rounded-2xl border border-primary/30 p-6 sm:p-8"
+      className="mx-auto w-full max-w-2xl space-y-6 overflow-hidden rounded-2xl border border-primary/30 p-5 sm:p-8"
     >
       {/* Header */}
-      <div className="-mx-6 -mt-6 mb-2 bg-black px-6 py-6 sm:-mx-8 sm:-mt-8 sm:px-8">
-        <h1 className="text-2xl font-semibold text-white">
+      <div className="-mx-5 -mt-5 mb-2 bg-black px-5 py-5 sm:-mx-8 sm:-mt-8 sm:px-8 sm:py-6">
+        <h1 className="text-xl font-semibold text-white sm:text-2xl">
           List your studio
         </h1>
         <div className="mt-3 h-1 w-14 rounded-full bg-primary" />
@@ -251,7 +251,7 @@ const token = await getTokenFromClient()
       <div className="space-y-3">
         <Label>Amenities</Label>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
           {AMENITIES.map((a) => {
             const checked = amenities.includes(a);
 
@@ -263,7 +263,7 @@ const token = await getTokenFromClient()
               <label
                 key={a}
                 htmlFor={id}
-                className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2.5 text-sm transition-colors ${
+                className={`flex min-w-0 cursor-pointer items-center gap-2 rounded-lg border px-2.5 py-2 text-xs transition-colors sm:px-3 sm:py-2.5 sm:text-sm ${
                   checked
                     ? "border-primary bg-primary/10"
                     : "border-border hover:border-primary/50"
@@ -276,7 +276,7 @@ const token = await getTokenFromClient()
                     toggleAmenity(a, v === true)
                   }
                 />
-                {a}
+                <span className="min-w-0">{a}</span>
               </label>
             );
           })}

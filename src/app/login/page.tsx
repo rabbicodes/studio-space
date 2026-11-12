@@ -86,7 +86,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="relative mx-auto mb-12 mt-10 w-full max-w-lg px-4">
+    <div className="relative mx-auto mb-10 mt-8 w-full max-w-lg overflow-x-clip px-4 sm:mb-12 sm:mt-10">
       {/* Background Decoration */}
       <div className="pointer-events-none absolute -left-20 top-20 h-64 w-64 rounded-full bg-[#9b2ae5]/10 blur-[100px]" />
       <div className="pointer-events-none absolute -right-20 bottom-10 h-64 w-64 rounded-full bg-purple-500/10 blur-[100px]" />

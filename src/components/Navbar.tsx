@@ -73,7 +73,7 @@ export function Navbar() {
             alt="Studio Space"
             priority
             className={cn(
-              "h-13 w-auto object-contain",
+              "h-9 w-auto object-contain sm:h-11 md:h-13",
               transparentNavbar ? "hidden" : "dark:hidden"
             )}
           />
@@ -84,14 +84,14 @@ export function Navbar() {
             alt="Studio Space"
             priority
             className={cn(
-              "h-13 w-auto object-contain",
+              "h-9 w-auto object-contain sm:h-11 md:h-13",
               transparentNavbar ? "block" : "hidden dark:block"
             )}
           />
 
           <span
             className={cn(
-              "text-[22px] font-bold leading-none tracking-tight md:text-[32px]",
+              "whitespace-nowrap text-lg font-bold leading-none tracking-tight sm:text-[22px] md:text-[32px]",
               transparentNavbar
                 ? "text-white"
                 : "text-gray-900 dark:text-white"
@@ -107,7 +107,7 @@ export function Navbar() {
         {/* Desktop Navigation */}
         <nav
           aria-label="Main navigation"
-          className="hidden items-center gap-1 md:flex"
+          className="hidden items-center gap-1 lg:flex"
         >
           {navItems.map((item) => {
             const active = isActive(pathname, item.href);
@@ -135,7 +135,7 @@ export function Navbar() {
         </nav>
 
         {/* Right Side */}
-        <div className="flex items-center gap-3 sm:gap-5">
+        <div className="flex items-center gap-2 sm:gap-5">
           <ThemeToggle />
 
           <NavSessionManage />
@@ -155,7 +155,7 @@ export function Navbar() {
               transparentNavbar
                 ? "text-white hover:bg-white/10 hover:text-white"
                 : "text-gray-900 hover:bg-white dark:text-white dark:hover:bg-white/10",
-              "md:hidden"
+              "lg:hidden"
             )}
           >
             {menuOpen ? (
@@ -172,7 +172,7 @@ export function Navbar() {
         <div
           id="mobile-navigation"
           className={cn(
-            "border-t backdrop-blur-xl md:hidden",
+            "max-h-[calc(100dvh-4rem)] overflow-y-auto border-t backdrop-blur-xl lg:hidden",
             transparentNavbar
               ? "border-white/10 bg-black/95 text-white"
               : "border-gray-200 bg-gray-100 text-gray-900 dark:border-white/10 dark:bg-[#151518] dark:text-white"
@@ -210,7 +210,7 @@ export function Navbar() {
             {/* Mobile Auth Links */}
             <div
               className={cn(
-                "mt-3 flex flex-col gap-2 border-t pt-3",
+                "mt-3 flex flex-col gap-2 border-t pt-3 [&>a]:h-10",
                 transparentNavbar
                   ? "border-white/10"
                   : "border-gray-200 dark:border-white/10"

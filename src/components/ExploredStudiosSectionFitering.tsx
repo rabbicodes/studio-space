@@ -45,7 +45,7 @@ const [position, setPosition] = React.useState("default")
          
 
 
-          <h1 className="text-3xl font-bold sm:text-4xl">
+          <h1 className="text-2xl font-bold sm:text-4xl">
             Explore{" "}
             <span className="text-[#9b2ae5]">Studios</span>
           </h1>
@@ -61,7 +61,7 @@ const [position, setPosition] = React.useState("default")
         className="border-purple-200 bg-white cursor-pointer text-purple-700 hover:bg-purple-50 hover:text-purple-800 dark:border-purple-500/30 dark:bg-[#151518] dark:text-purple-300 dark:hover:bg-purple-500/10"
       >
         
-        <ArrowDownWideNarrow size={40} strokeWidth={2}  /> <span className="font-bold text-[18px] text-black dark:text-white">{position}</span> 
+        <ArrowDownWideNarrow size={20} strokeWidth={2}  /> <span className="font-bold text-base text-black dark:text-white sm:text-[18px]">{position}</span> 
        
 
         
@@ -151,6 +151,7 @@ const [position, setPosition] = React.useState("default")
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -166,12 +167,12 @@ const [position, setPosition] = React.useState("default")
                 </h2>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="flex min-w-0 items-center gap-2 truncate text-sm text-gray-600 dark:text-gray-400">
                     <MapPin
                       size={16}
                       className="shrink-0 text-[#9b2ae5]"
                     />
-                    {photo.location}
+                    <span className="truncate">{photo.location}</span>
                   </p>
 
                   <p className="flex shrink-0 items-center gap-1 text-sm font-medium text-yellow-500">
@@ -181,7 +182,7 @@ const [position, setPosition] = React.useState("default")
                 </div>
 
                 {/* Price and Details */}
-                <div className="flex items-center justify-between border-t border-purple-100 pt-4 dark:border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-4 dark:border-white/10">
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hourly Rate
@@ -197,7 +198,7 @@ const [position, setPosition] = React.useState("default")
 
                   <Link
                     href={`/studios/${photo._id}`}
-                    className="flex items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
+                    className="flex shrink-0 items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
                   >
                     View Details
                     <ArrowUpRight size={16} />
@@ -221,6 +222,7 @@ const [position, setPosition] = React.useState("default")
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -236,12 +238,12 @@ const [position, setPosition] = React.useState("default")
                 </h2>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="flex min-w-0 items-center gap-2 truncate text-sm text-gray-600 dark:text-gray-400">
                     <MapPin
                       size={16}
                       className="shrink-0 text-[#9b2ae5]"
                     />
-                    {film.location}
+                    <span className="truncate">{film.location}</span>
                   </p>
 
                   <p className="flex shrink-0 items-center gap-1 text-sm font-medium text-yellow-500">
@@ -251,7 +253,7 @@ const [position, setPosition] = React.useState("default")
                 </div>
 
                 {/* Price and Details */}
-                <div className="flex items-center justify-between border-t border-purple-100 pt-4 dark:border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-4 dark:border-white/10">
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hourly Rate
@@ -267,7 +269,7 @@ const [position, setPosition] = React.useState("default")
 
                   <Link
                     href={`/studios/${film._id}`}
-                    className="flex items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
+                    className="flex shrink-0 items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
                   >
                     View Details
                     <ArrowUpRight size={16} />
@@ -291,6 +293,7 @@ const [position, setPosition] = React.useState("default")
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -306,12 +309,12 @@ const [position, setPosition] = React.useState("default")
                 </h2>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="flex min-w-0 items-center gap-2 truncate text-sm text-gray-600 dark:text-gray-400">
                     <MapPin
                       size={16}
                       className="shrink-0 text-[#9b2ae5]"
                     />
-                    {podcast.location}
+                    <span className="truncate">{podcast.location}</span>
                   </p>
 
                   <p className="flex shrink-0 items-center gap-1 text-sm font-medium text-yellow-500">
@@ -321,7 +324,7 @@ const [position, setPosition] = React.useState("default")
                 </div>
 
                 {/* Price and Details */}
-                <div className="flex items-center justify-between border-t border-purple-100 pt-4 dark:border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-4 dark:border-white/10">
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hourly Rate
@@ -337,7 +340,7 @@ const [position, setPosition] = React.useState("default")
 
                   <Link
                     href={`/studios/${podcast._id}`}
-                    className="flex items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
+                    className="flex shrink-0 items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
                   >
                     View Details
                     <ArrowUpRight size={16} />
@@ -361,6 +364,7 @@ const [position, setPosition] = React.useState("default")
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -376,12 +380,12 @@ const [position, setPosition] = React.useState("default")
                 </h2>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="flex min-w-0 items-center gap-2 truncate text-sm text-gray-600 dark:text-gray-400">
                     <MapPin
                       size={16}
                       className="shrink-0 text-[#9b2ae5]"
                     />
-                    {music.location}
+                    <span className="truncate">{music.location}</span>
                   </p>
 
                   <p className="flex shrink-0 items-center gap-1 text-sm font-medium text-yellow-500">
@@ -391,7 +395,7 @@ const [position, setPosition] = React.useState("default")
                 </div>
 
                 {/* Price and Details */}
-                <div className="flex items-center justify-between border-t border-purple-100 pt-4 dark:border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-4 dark:border-white/10">
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hourly Rate
@@ -407,7 +411,7 @@ const [position, setPosition] = React.useState("default")
 
                   <Link
                     href={`/studios/${music._id}`}
-                    className="flex items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
+                    className="flex shrink-0 items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
                   >
                     View Details
                     <ArrowUpRight size={16} />
@@ -430,6 +434,7 @@ const [position, setPosition] = React.useState("default")
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -445,12 +450,12 @@ const [position, setPosition] = React.useState("default")
                 </h2>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="flex min-w-0 items-center gap-2 truncate text-sm text-gray-600 dark:text-gray-400">
                     <MapPin
                       size={16}
                       className="shrink-0 text-[#9b2ae5]"
                     />
-                    {workshop.location}
+                    <span className="truncate">{workshop.location}</span>
                   </p>
 
                   <p className="flex shrink-0 items-center gap-1 text-sm font-medium text-yellow-500">
@@ -460,7 +465,7 @@ const [position, setPosition] = React.useState("default")
                 </div>
 
                 {/* Price and Details */}
-                <div className="flex items-center justify-between border-t border-purple-100 pt-4 dark:border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-4 dark:border-white/10">
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hourly Rate
@@ -476,7 +481,7 @@ const [position, setPosition] = React.useState("default")
 
                   <Link
                     href={`/studios/${workshop._id}`}
-                    className="flex items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
+                    className="flex shrink-0 items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
                   >
                     View Details
                     <ArrowUpRight size={16} />
@@ -499,6 +504,7 @@ const [position, setPosition] = React.useState("default")
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -514,12 +520,12 @@ const [position, setPosition] = React.useState("default")
                 </h2>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="flex min-w-0 items-center gap-2 truncate text-sm text-gray-600 dark:text-gray-400">
                     <MapPin
                       size={16}
                       className="shrink-0 text-[#9b2ae5]"
                     />
-                    {other.location}
+                    <span className="truncate">{other.location}</span>
                   </p>
 
                   <p className="flex shrink-0 items-center gap-1 text-sm font-medium text-yellow-500">
@@ -529,7 +535,7 @@ const [position, setPosition] = React.useState("default")
                 </div>
 
                 {/* Price and Details */}
-                <div className="flex items-center justify-between border-t border-purple-100 pt-4 dark:border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-4 dark:border-white/10">
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hourly Rate
@@ -545,7 +551,7 @@ const [position, setPosition] = React.useState("default")
 
                   <Link
                     href={`/studios/${other._id}`}
-                    className="flex items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
+                    className="flex shrink-0 items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
                   >
                     View Details
                     <ArrowUpRight size={16} />
@@ -568,6 +574,7 @@ const [position, setPosition] = React.useState("default")
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
@@ -583,12 +590,12 @@ const [position, setPosition] = React.useState("default")
                 </h2>
 
                 <div className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="flex min-w-0 items-center gap-2 truncate text-sm text-gray-600 dark:text-gray-400">
                     <MapPin
                       size={16}
                       className="shrink-0 text-[#9b2ae5]"
                     />
-                    {studio.location}
+                    <span className="truncate">{studio.location}</span>
                   </p>
 
                   <p className="flex shrink-0 items-center gap-1 text-sm font-medium text-yellow-500">
@@ -598,7 +605,7 @@ const [position, setPosition] = React.useState("default")
                 </div>
 
                 {/* Price and Details */}
-                <div className="flex items-center justify-between border-t border-purple-100 pt-4 dark:border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-4 dark:border-white/10">
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hourly Rate
@@ -614,7 +621,7 @@ const [position, setPosition] = React.useState("default")
 
                   <Link
                     href={`/studios/${studio._id}`}
-                    className="flex items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
+                    className="flex shrink-0 items-center gap-2 rounded-lg bg-[#9b2ae5] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8120c4]"
                   >
                     View Details
                     <ArrowUpRight size={16} />

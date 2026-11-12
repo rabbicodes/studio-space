@@ -39,7 +39,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
         {/* Heading */}
         <div className="mb-12 mt-15 text-center">
           {/* Breadcrumb */}
-          <nav className="mb-6 flex items-center justify-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+          <nav className="mb-6 flex flex-wrap items-center justify-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
             <Link href="/" className="transition-colors hover:text-[#9b2ae5] dark:hover:text-[#c77aff]">
               Home
             </Link>
@@ -55,7 +55,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
 
 
 
-          <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Explore{" "}
             <span className="bg-linear-to-r from-[#9b2ae5] to-[#c77aff] bg-clip-text text-transparent">
               {categoryName}
@@ -97,6 +97,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
                   width={500}
                   height={350}
                   unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
@@ -114,7 +115,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
               </div>
 
               {/* Card Content */}
-              <div className="relative space-y-4 p-6">
+              <div className="relative space-y-4 p-5 sm:p-6">
                 {/* Soft glow */}
                 <div className="pointer-events-none absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-purple-200/50 blur-3xl transition-all duration-500 group-hover:scale-125 dark:bg-[#9b2ae5]/15" />
 
@@ -128,7 +129,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
                 </p>
 
                 {/* Price and Details */}
-                <div className="relative flex items-center justify-between border-t border-purple-100 pt-5 dark:border-[#9b2ae5]/15">
+                <div className="relative flex flex-wrap items-center justify-between gap-3 border-t border-purple-100 pt-5 dark:border-[#9b2ae5]/15">
                   <div>
                     <p className="text-xs text-gray-500">Hourly Rate</p>
 
@@ -142,7 +143,7 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
 
                   <Link
                     href={`/studios/${studio._id}`}
-                    className="group/btn flex items-center gap-2 rounded-xl bg-linear-to-br from-[#9b2ae5] to-[#6d1db0] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#9b2ae5]/25 outline-none transition-all duration-300 hover:shadow-[#9b2ae5]/45 focus-visible:ring-2 focus-visible:ring-[#9b2ae5] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
+                    className="group/btn flex shrink-0 items-center gap-2 rounded-xl bg-linear-to-br from-[#9b2ae5] to-[#6d1db0] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#9b2ae5]/25 outline-none transition-all duration-300 hover:shadow-[#9b2ae5]/45 focus-visible:ring-2 focus-visible:ring-[#9b2ae5] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-black"
                   >
                     View Details
                     <ArrowUpRight

@@ -40,10 +40,10 @@ const token = await getTokenFromServer()
   const myBookings: IBooking[] = await res.json();
 
   return (
-    <div className="mx-auto min-h-screen max-w-6xl px-5 py-12">
+    <div className="mx-auto min-h-screen max-w-6xl px-4 py-10 sm:px-5 sm:py-12">
       {/* Page Heading */}
-      <div className="mb-10">
-        <p className="mb-2 text-[32px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400">
+      <div className="mb-8 sm:mb-10">
+        <p className="mb-2 text-lg font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 sm:text-2xl lg:text-[32px]">
           Your Reservations
         </p>
 
@@ -103,6 +103,7 @@ const token = await getTokenFromServer()
                     alt={mybooking.title}
                     fill
                     unoptimized
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 288px, 288px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -124,13 +125,13 @@ const token = await getTokenFromServer()
                     </div>
 
                     {/* Studio Title */}
-                    <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">
+                    <h2 className="mt-2 wrap-break-words text-lg font-bold text-gray-900 dark:text-white sm:text-xl">
                       {mybooking.title}
                     </h2>
 
                     {/* Location */}
-                    <p className="mt-1 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
-                      <MapPin size={16} className="text-purple-600 dark:text-purple-400" />
+                    <p className="mt-1 flex items-center gap-1.5 wrap-break-words text-sm text-gray-500 dark:text-gray-400">
+                      <MapPin size={16} className="shrink-0 text-purple-600 dark:text-purple-400" />
                       {mybooking.location}
                     </p>
 

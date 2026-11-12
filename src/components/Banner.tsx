@@ -75,7 +75,7 @@ export function Banner() {
           swiperRef.current = swiper;
         }}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="h-155 w-full sm:h-170 lg:h-180"
+        className="h-[520px] w-full sm:h-170 lg:h-180"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.image} className="relative h-full w-full">
@@ -84,27 +84,27 @@ export function Banner() {
               alt=""
               fill
               priority={index === 0}
-              sizes="100vw"
+              sizes="(max-width: 1280px) 100vw, 1280px"
               className="object-cover"
             />
 
             <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/65 to-black/25" />
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />
 
-            <div className="relative z-10 mx-auto flex h-full max-w-7xl mt-9 items-center px-4 sm:px-6 lg:px-8">
-              <div className="max-w-2xl pb-28 pt-16 sm:pt-20">
+            <div className="relative z-10 mx-auto mt-6 flex h-full max-w-7xl items-center px-4 sm:mt-9 sm:px-6 lg:px-8">
+              <div className="max-w-2xl pb-24 pt-12 sm:pb-28 sm:pt-20">
                
-<h2 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+<h2 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:mt-6 sm:text-5xl lg:text-6xl">
   {slide.title.split(" ").slice(0, 2).join(" ")}
   <span className="text-purple-500">
     {" "}{slide.title.split(" ").slice(2).join(" ")}
   </span>
 </h2>
-                <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/75 sm:text-lg">
+                <p className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-white/75 sm:mt-5 sm:text-lg">
                   {slide.description}
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
                   <Link
                     href="/studios"
                     className={cn(
@@ -125,7 +125,7 @@ export function Banner() {
       </Swiper>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 pb-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 pb-5 sm:px-6 sm:pb-6 lg:px-8">
           <div className="pointer-events-auto flex items-center gap-2">
             {slides.map((slide, index) => (
               <button

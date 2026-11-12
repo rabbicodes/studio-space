@@ -1,11 +1,16 @@
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-import { headers } from "next/headers"
-import { auth } from "./auth";
+export const getTokenFromServer = async () => {
+  try {
+    const { token } = await auth.api.getToken({
+      headers: await headers(),
+    });
 
-export const getTokenFromServer=async()=>{
-    const jwtToken = await auth.api.getToken({
-    headers: await headers()
-  })
-  const token = jwtToken?.token
-  return token;
-}
+    return token ?? null;
+  } catch (error) {
+    console.log("No authenticated session found",error);
+
+    return null;
+  }
+};

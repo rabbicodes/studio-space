@@ -115,47 +115,47 @@ const StudioDetailsPage = async ({
             </div>
           </div>
 
-          <h1 className="mt-4 text-3xl font-bold sm:text-4xl">
+          <h1 className="mt-4 text-2xl font-bold sm:text-4xl">
             {studio.title}
           </h1>
 
-          <p className="mt-3 flex items-center gap-2 text-gray-500 dark:text-gray-400">
-            <MapPin size={18} />
+          <p className="mt-3 flex items-center gap-2 wrap-break-words text-gray-500 dark:text-gray-400">
+            <MapPin size={18} className="shrink-0" />
             {studio.location}
           </p>
         </section>
 
         {/* Overview */}
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold">
+        <section className="mt-10 sm:mt-12">
+          <h2 className="text-xl font-bold sm:text-2xl">
             About This Studio
           </h2>
 
-          <div className="mt-5 rounded-xl border border-gray-200 bg-white p-6 dark:border-white/10 dark:bg-[#151518]">
-            <p className="leading-7 text-gray-600 dark:text-gray-400">
+          <div className="mt-5 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10 dark:bg-[#151518] sm:p-6">
+            <p className="wrap-break-words leading-7 text-gray-600 dark:text-gray-400">
               {studio.overview}
             </p>
           </div>
           
         </section>
-<section className="mt-12">
-          <h2 className="text-2xl font-bold">
+<section className="mt-10 sm:mt-12">
+          <h2 className="text-xl font-bold sm:text-2xl">
             Host Information 
           </h2>
 
-          <div className="mt-5 rounded-xl border border-gray-200 bg-white p-6 dark:border-white/10 dark:bg-[#151518]">
-            <p className="leading-7 text-gray-600 dark:text-gray-400">
+          <div className="mt-5 space-y-1 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/10 dark:bg-[#151518] sm:p-6">
+            <p className="warp-break-words leading-7 text-gray-600 dark:text-gray-400">
              Host Name: {studio.username}
             </p>
-            <p className="leading-7 text-gray-600 dark:text-gray-400">
+            <p className="warp-break-words leading-7 text-gray-600 dark:text-gray-400">
              Host Email: {studio.email}
             </p>
           </div>
           
         </section>
         {/* Amenities */}
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold">
+        <section className="mt-10 sm:mt-12">
+          <h2 className="text-xl font-bold sm:text-2xl">
             Studio Amenities
           </h2>
 
@@ -179,8 +179,8 @@ const StudioDetailsPage = async ({
         </section>
 
         {/* Workspace Specifications */}
-        <section className="mt-12">
-          <h2 className="mb-6 text-2xl font-bold">
+        <section className="mt-10 sm:mt-12">
+          <h2 className="mb-6 text-xl font-bold sm:text-2xl">
             Studio Specifications
           </h2>
 
@@ -205,7 +205,7 @@ const StudioDetailsPage = async ({
                         {item.title}
                       </p>
 
-                      <h3 className="mt-1 wrap-break  text-base font-semibold">
+                      <h3 className="mt-1 text-base font-semibold warp-break-words">
                         {item.value}
                       </h3>
                     </div>
@@ -215,7 +215,7 @@ const StudioDetailsPage = async ({
             </div>
 
             {/* Booking Card */}
-            <div className="flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#151518]">
+            <div className="flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#151518] sm:p-6">
               <div>
                 <div className="flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#9b2ae5]/10 text-[#9b2ae5] dark:text-[#c77aff]">

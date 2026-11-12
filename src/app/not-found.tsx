@@ -4,13 +4,13 @@ import { ArrowLeft, ArrowUpRight, Compass } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#faf9fc] px-5 py-16 dark:bg-[#09090b]">
+    <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[#faf9fc] px-4 py-12 dark:bg-[#09090b] sm:px-5 sm:py-16">
 
       {/* Background Decoration */}
       <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-purple-500/10 blur-[100px]" />
       <div className="pointer-events-none absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-purple-500/10 blur-[100px]" />
 
-      <div className="relative w-full max-w-xl rounded-3xl border border-purple-200/70 bg-white/80 p-8 text-center shadow-xl shadow-purple-500/5 backdrop-blur-xl sm:p-12 dark:border-purple-500/20 dark:bg-[#151518]/90">
+      <div className="relative w-full max-w-xl rounded-3xl border border-purple-200/70 bg-white/80 p-6 text-center shadow-xl shadow-purple-500/5 backdrop-blur-xl sm:p-12 dark:border-purple-500/20 dark:bg-[#151518]/90">
 
         {/* Icon */}
         <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 text-[#9b2ae5] dark:bg-purple-500/15">
@@ -45,7 +45,7 @@ export default function NotFound() {
 
         {/* Footer */}
         <div className="mt-10 border-t border-purple-100 pt-6 dark:border-purple-500/15">
-          <p className="text-xs font-medium tracking-wide text-gray-400 dark:text-gray-500">
+          <p className="text-[10px] font-medium tracking-normal text-gray-400 sm:text-xs sm:tracking-wide dark:text-gray-500">
             STUDIO<span className="text-[#9b2ae5]">SPACE</span>
             <span className="mx-2">·</span>
             CREATE WITHOUT LIMITS

@@ -123,12 +123,12 @@ const HowItWorks = () => {
       <div className="sticky top-0 h-dvh overflow-hidden">
         {/* pt-20 keeps the content clear of the sticky navbar.
             Change it if your navbar is taller or shorter. */}
-        <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-4 pb-5 pt-20 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-4 pb-4 pt-20 sm:px-6 sm:pb-5 lg:px-8">
           {/* Heading */}
           <div className="mb-3 shrink-0 text-center sm:mb-5">
          
 
-            <h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
               How It <span className="text-[#9b2ae5]">Works</span>
             </h2>
 
@@ -214,10 +214,10 @@ const HowItWorks = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="rounded-3xl border border-purple-200 bg-white p-5 shadow-xl shadow-purple-500/5 dark:border-white/10 dark:bg-[#151518] sm:p-6"
+                    className="rounded-3xl border border-purple-200 bg-white p-4 shadow-xl shadow-purple-500/5 dark:border-white/10 dark:bg-[#151518] sm:p-6"
                   >
                     {/* Top row */}
-                    <div className="mb-4 flex items-center justify-between">
+                    <div className="mb-3 flex items-center justify-between sm:mb-4">
                       <span className="rounded-full bg-purple-100 px-3 py-1.5 text-xs font-semibold text-[#9b2ae5] dark:bg-purple-500/10">
                         Step {activeStep.number}
                       </span>
@@ -238,11 +238,11 @@ const HowItWorks = () => {
                     </div>
 
                     {/* Icon and title on one row */}
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-purple-100 text-[#9b2ae5] dark:bg-purple-500/10">
-                        <ActiveIcon size={24} />
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-purple-100 text-[#9b2ae5] dark:bg-purple-500/10 sm:h-12 sm:w-12">
+                        <ActiveIcon size={22} />
                       </div>
-                      <h3 className="text-xl font-bold leading-snug tracking-tight sm:text-2xl">
+                      <h3 className="text-lg font-bold leading-snug tracking-tight sm:text-2xl">
                         {activeStep.title}
                       </h3>
                     </div>
@@ -252,7 +252,7 @@ const HowItWorks = () => {
                     </p>
 
                     {/* Details */}
-                    <div className="mt-4 space-y-2.5">
+                    <div className="mt-4 space-y-2 sm:space-y-2.5">
                       {activeStep.details.map((detail, index) => (
                         <motion.div
                           key={detail}
@@ -272,7 +272,7 @@ const HowItWorks = () => {
                     </div>
 
                     {/* Footer */}
-                    <div className="mt-5 border-t border-gray-200 pt-4 dark:border-white/10">
+                    <div className="mt-4 border-t border-gray-200 pt-3 dark:border-white/10 sm:mt-5 sm:pt-4">
                       <div className="mb-3 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                         <span>
                           {activeIndex + 1} of {steps.length} steps

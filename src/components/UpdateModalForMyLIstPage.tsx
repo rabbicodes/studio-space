@@ -131,7 +131,7 @@ redirect('/my-list')
       />
 
       <DialogContent
-        className="max-h-[90vh] overflow-y-auto sm:max-w-2xl"
+        className="max-h-[90dvh] overflow-y-auto sm:max-w-2xl"
       >
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">
@@ -283,7 +283,7 @@ redirect('/my-list')
           <div className="space-y-3">
             <Label>Amenities</Label>
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
               {AMENITIES.map((a) => {
                 const checked = amenities.includes(a);
 
@@ -295,7 +295,7 @@ redirect('/my-list')
                   <label
                     key={a}
                     htmlFor={id}
-                    className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2.5 text-sm transition-colors ${
+                    className={`flex min-w-0 cursor-pointer items-center gap-2 rounded-lg border px-2.5 py-2 text-xs transition-colors sm:px-3 sm:py-2.5 sm:text-sm ${
                       checked
                         ? "border-purple-500 bg-purple-500/10"
                         : "border-border hover:border-purple-500/50"
@@ -309,7 +309,7 @@ redirect('/my-list')
                       }
                     />
 
-                    {a}
+                    <span className="min-w-0">{a}</span>
                   </label>
                 );
               })}

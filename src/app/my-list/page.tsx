@@ -69,7 +69,7 @@ const token = await getTokenFromServer();
               Studio Management
             </p>
 
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
               My Studio Listings
             </h1>
 
@@ -171,36 +171,36 @@ const token = await getTokenFromServer();
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-262.5 text-left">
+              <table className="w-full min-w-140 text-left">
 
                 {/* Columns */}
                 <thead className="bg-muted/50 text-xs uppercase tracking-wider text-muted-foreground">
                   <tr>
-                    <th className="px-5 py-4 font-semibold">
+                    <th className="px-3 py-4 font-semibold sm:px-4 lg:px-5">
                       Studio
                     </th>
 
-                    <th className="px-5 py-4 font-semibold">
+                    <th className="hidden px-3 py-4 font-semibold sm:px-4 lg:table-cell lg:px-5">
                       Owner Email
                     </th>
 
-                    <th className="px-5 py-4 font-semibold">
+                    <th className="hidden px-3 py-4 font-semibold sm:px-4 md:table-cell lg:px-5">
                       Location
                     </th>
 
-                    <th className="px-5 py-4 font-semibold">
+                    <th className="px-3 py-4 font-semibold sm:px-4 lg:px-5">
                       Rate
                     </th>
 
-                    <th className="px-5 py-4 font-semibold">
+                    <th className="hidden px-3 py-4 font-semibold sm:table-cell sm:px-4 lg:px-5">
                       Capacity
                     </th>
 
-                    <th className="px-5 py-4 font-semibold">
+                    <th className="px-3 py-4 font-semibold sm:px-4 lg:px-5">
                       Status
                     </th>
 
-                    <th className="px-5 py-4 text-center font-semibold">
+                    <th className="px-3 py-4 text-center font-semibold sm:px-4 lg:px-5">
                       Actions
                     </th>
                   </tr>
@@ -216,7 +216,7 @@ const token = await getTokenFromServer();
                     >
 
                       {/* Studio */}
-                      <td className="px-5 py-4">
+                      <td className="px-3 py-4 sm:px-4 lg:px-5">
                         <div className="flex items-center gap-3">
                           <div className="relative h-12 w-14 shrink-0 overflow-hidden rounded-lg">
                             <Image
@@ -224,12 +224,13 @@ const token = await getTokenFromServer();
                               alt={mylist.title}
                               fill
                               unoptimized
+                              sizes="56px"
                               className="object-cover"
                             />
                           </div>
 
                           <div>
-                            <p className="max-w-45 truncate text-sm font-semibold">
+                            <p className="max-w-35 truncate text-sm font-semibold sm:max-w-45">
                               {mylist.title}
                             </p>
 
@@ -241,7 +242,7 @@ const token = await getTokenFromServer();
                       </td>
 
                       {/* Owner Email */}
-                      <td className="px-5 py-4">
+                      <td className="hidden px-3 py-4 sm:px-4 lg:table-cell lg:px-5">
                         <div className="max-w-47.5">
                           <p className="truncate text-sm font-medium">
                              {email}
@@ -254,7 +255,7 @@ const token = await getTokenFromServer();
                       </td>
 
                       {/* Location */}
-                      <td className="px-5 py-4">
+                      <td className="hidden px-3 py-4 sm:px-4 md:table-cell lg:px-5">
                         <div className="flex max-w-40 items-center gap-2 text-sm text-muted-foreground">
                           <MapPin
                             size={15}
@@ -268,14 +269,14 @@ const token = await getTokenFromServer();
                       </td>
 
                       {/* Hourly Rate */}
-                      <td className="px-5 py-4">
-                        <p className="text-sm font-bold text-purple-500">
+                      <td className="px-3 py-4 sm:px-4 lg:px-5">
+                        <p className="whitespace-nowrap text-sm font-bold text-purple-500">
                           ${mylist.hourlyRate}/hr
                         </p>
                       </td>
 
                       {/* Capacity */}
-                      <td className="px-5 py-4">
+                      <td className="hidden px-3 py-4 sm:table-cell sm:px-4 lg:px-5">
                         <div className="flex items-center gap-2 text-sm">
                           <Users
                             size={15}
@@ -287,7 +288,7 @@ const token = await getTokenFromServer();
                       </td>
 
                       {/* Status */}
-                      <td className="px-5 py-4">
+                      <td className="px-3 py-4 sm:px-4 lg:px-5">
                         <span
                           className={`inline-flex rounded-full px-3 py-1.5 text-xs font-semibold ${
                             mylist.status?.toLowerCase() === "approved"
@@ -302,7 +303,7 @@ const token = await getTokenFromServer();
                       </td>
 
                       {/* Actions */}
-                      <td className="px-5 py-4">
+                      <td className="px-3 py-4 sm:px-4 lg:px-5">
                         <div className="flex items-center justify-center gap-2">
 
                           <UpdateModalForMyLIstPage

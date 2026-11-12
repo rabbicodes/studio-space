@@ -48,7 +48,7 @@ const Footer = () => {
             alt="Studio Space"
             priority
             className=
-              "h-13 w-auto object-contain dark:hidden"
+              "h-10 w-auto object-contain dark:hidden sm:h-13"
         
           />
 
@@ -58,13 +58,13 @@ const Footer = () => {
             alt="Studio Space"
             priority
             className=
-              "h-13 w-auto object-contain hidden dark:block"
+              "h-10 w-auto object-contain hidden dark:block sm:h-13"
             
           />
 
           <span
             className=
-              "text-[22px] font-bold leading-none tracking-tight md:text-[32px] text-gray-900 dark:text-white"
+              "whitespace-nowrap text-xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-[22px] md:text-[32px]"
     
           >
             Studio
@@ -140,7 +140,7 @@ const Footer = () => {
               creative ideas, and special offers.
             </p>
 
-            <form className="mt-5 flex items-center gap-2">
+            <form className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-center">
               <div className="relative min-w-0 flex-1">
                 <Mail
                   size={17}
@@ -218,7 +218,7 @@ const Footer = () => {
             © {new Date().getFullYear()} StudioSpace. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-5 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm sm:justify-end">
             <Link
               href="/terms"
               className="text-gray-500 transition-colors hover:text-[#9b2ae5] dark:text-gray-400 dark:hover:text-[#c77aff]"

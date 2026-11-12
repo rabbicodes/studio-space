@@ -52,7 +52,7 @@ const BrowseCategories = async () => {
 
 
   return (
-    <section className="space-y-12 max-w-7xl mx-auto">
+    <section className="mx-auto max-w-7xl space-y-10 px-4 py-16 sm:space-y-12 sm:px-6 lg:px-8 lg:py-20">
       {/* Section Heading */}
       <div className="mx-auto max-w-2xl text-center">
         <Badge
@@ -64,7 +64,7 @@ const BrowseCategories = async () => {
           {categories.length === 1 ? "Category" : "Categories"}
         </Badge>
 
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
           Browse Studios by{" "}
           <span className="bg-linear-to-r from-purple-600 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-fuchsia-400 dark:to-violet-400">
             Category

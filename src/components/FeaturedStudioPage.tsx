@@ -22,17 +22,17 @@ const FeaturedStudioPage = async () => {
   const featuredes: IStudio[] = await res.json();
 
   return (
-    <section className="bg-white py-20 dark:bg-[#09090b]">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <section className="bg-white py-16 dark:bg-[#09090b] sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Heading */}
-        <div className="mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+        <div className="mb-10 flex flex-col justify-between gap-5 sm:mb-12 sm:flex-row sm:items-end">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[3px] text-purple-600 dark:text-purple-400">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[2px] text-purple-600 dark:text-purple-400 sm:text-sm sm:tracking-[3px]">
               Explore Our Collection
             </p>
 
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl dark:text-white">
               Featured <span className="text-purple-600">Studios</span>
             </h2>
 
@@ -69,6 +69,7 @@ const FeaturedStudioPage = async () => {
                     alt={feature.title}
                     width={200}
                     height={200}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
 
@@ -103,7 +104,7 @@ const FeaturedStudioPage = async () => {
                   <div className="my-5 border-t border-gray-100 dark:border-white/10" />
 
                   {/* Price and Details Button */}
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         Starting from

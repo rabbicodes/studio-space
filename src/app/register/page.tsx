@@ -88,7 +88,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden px-4 py-12">
+    <div className="relative flex min-h-[calc(100dvh-80px)] items-center justify-center overflow-hidden px-4 py-8 sm:py-12">
 
       {/* Background Decoration */}
       <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#9b2ae5]/10 blur-[100px]" />
@@ -101,7 +101,7 @@ const RegisterPage = () => {
           {/* Top Gradient */}
           <div className="h-1.5 w-full bg-linear-to-r from-[#8120c4] via-[#9b2ae5] to-[#c77aff]" />
 
-          <CardHeader className="space-y-3 px-6 pt-8 text-center sm:px-8">
+          <CardHeader className="space-y-3 px-5 pt-8 text-center sm:px-8">
             <div className="space-y-1.5">
               <CardTitle className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Create Your Account
@@ -113,7 +113,7 @@ const RegisterPage = () => {
             </div>
           </CardHeader>
 
-          <CardContent className="px-6 pb-8 sm:px-8">
+          <CardContent className="px-5 pb-8 sm:px-8">
 
             <form onSubmit={onSubmit}>
               <FieldGroup className="gap-5">

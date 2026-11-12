@@ -174,7 +174,7 @@ export function HostGuarantee() {
         <Tabs
           value={audience}
           onValueChange={(value) => setAudience(value as Audience)}
-          className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start"
+          className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-12"
         >
           {/* LEFT CONTENT */}
           <motion.div
@@ -191,7 +191,7 @@ export function HostGuarantee() {
             >
               <Badge
                 variant="outline"
-                className="h-6 gap-1.5 rounded-full border-purple-200 bg-purple-50 px-3 text-[11px] font-semibold tracking-[0.18em] text-purple-700 uppercase dark:border-white/15 dark:bg-white/5 dark:text-white/80"
+                className="h-auto gap-1.5 rounded-full border-purple-200 bg-purple-50 px-3 py-1 text-center text-[10px] font-semibold tracking-[0.12em] text-purple-700 uppercase dark:border-white/15 dark:bg-white/5 dark:text-white/80 sm:h-6 sm:text-[11px] sm:tracking-[0.18em]"
               >
                 
                 Host guarantee & creator support

@@ -39,7 +39,7 @@ const DashboardPage = () => {
             User Panel
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-4xl">
             Dashboard
           </h1>
 
@@ -61,6 +61,7 @@ const DashboardPage = () => {
                   src={user?.image}
                   alt={user?.name || "User"}
                   fill
+                  sizes="96px"
                   className="object-cover"
                 />
               ) : (
@@ -68,17 +69,17 @@ const DashboardPage = () => {
               )}
             </div>{" "}
             {/* User Details */}
-            <div className="space-y-4">
+            <div className="min-w-0 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#9b2ae5]/10 text-[#9b2ae5] dark:bg-[#9b2ae5]/20">
                   <UserRound size={18} />
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     Full Name
                   </p>
-                  <p className="font-semibold">{user?.name}</p>
+                  <p className="wrap-break-words font-semibold">{user?.name}</p>
                 </div>
               </div>
 
@@ -87,11 +88,11 @@ const DashboardPage = () => {
                   <Mail size={18} />
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     Email Address
                   </p>
-                  <p className="font-medium">{user?.email}</p>
+                  <p className="break-all font-medium">{user?.email}</p>
                 </div>
               </div>
             </div>

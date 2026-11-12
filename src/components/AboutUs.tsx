@@ -68,7 +68,7 @@ const AboutUs = () => {
               </span>
             </div>
 
-            <h2 className="max-w-xl text-4xl leading-tight font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-[56px]">
+            <h2 className="max-w-xl text-3xl leading-tight font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl lg:text-[56px]">
               Your Space, Your
               <span className="block bg-linear-to-r from-[#9b2ae5] to-[#c77aff] bg-clip-text text-transparent">
 
@@ -150,7 +150,7 @@ const AboutUs = () => {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="relative overflow-hidden rounded-[22px] bg-linear-to-br from-[#361052] via-[#64239a] to-[#9b2ae5] p-7 text-white md:p-9"
+                className="relative overflow-hidden rounded-[22px] bg-linear-to-br from-[#361052] via-[#64239a] to-[#9b2ae5] p-6 text-white sm:p-7 md:p-9"
               >
                 <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full border-35 border-white/10" />
                 <div className="absolute -bottom-20 -left-12 h-56 w-56 rounded-full border-35 border-white/10" />
@@ -204,7 +204,7 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.2 }}
                   whileHover={{ y: -8 }}
-                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-5 dark:border-white/5 dark:bg-white/4"
+                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-4 dark:border-white/5 dark:bg-white/4 sm:p-5"
                 >
                   <div className="mb-3 inline-flex rounded-xl bg-[#9b2ae5]/10 p-3 text-[#9b2ae5]">
                     <Building2 size={22} />
@@ -223,7 +223,7 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.35 }}
                   whileHover={{ y: -8 }}
-                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-5 dark:border-white/5 dark:bg-white/4"
+                  className="rounded-2xl border border-gray-100 bg-[#faf8fd] p-4 dark:border-white/5 dark:bg-white/4 sm:p-5"
                 >
                   <div className="mb-3 inline-flex rounded-xl bg-[#9b2ae5]/10 p-3 text-[#9b2ae5]">
                     <CalendarCheck size={22} />
@@ -262,7 +262,7 @@ const AboutUs = () => {
         </div>
 
         {/* Bottom Feature Section */}
-        <div className="mt-24 border-t border-gray-200 pt-14 dark:border-white/10">
+        <div className="mt-16 border-t border-gray-200 pt-10 dark:border-white/10 sm:mt-24 sm:pt-14">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -273,7 +273,7 @@ const AboutUs = () => {
             <p className="text-sm font-semibold tracking-[3px] text-[#9b2ae5]">
               WHY STUDIOSPACE
             </p>
-            <h3 className="mt-3 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+            <h3 className="mt-3 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
               Everything You Need, In One Place
             </h3>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-500 dark:text-gray-400 md:text-base">

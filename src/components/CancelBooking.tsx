@@ -1,4 +1,5 @@
 "use client";
+import generateReceipt from "@/lib/generateReceipt";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { IBooking } from "@/type/MyBooking";
 import { useRouter } from "next/navigation";
@@ -32,7 +33,7 @@ const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
  
 
   <button
-    onClick={() => handleStatusChange("Pending")}
+    onClick={() => generateReceipt(mybooking)}
     className="rounded-lg border border-purple-600 bg-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:border-purple-700 hover:bg-purple-700 active:scale-95 cursor-pointer dark:border-purple-500 dark:bg-purple-600 dark:hover:bg-purple-500"
   >
     Receipt
@@ -43,6 +44,14 @@ const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
   >
     Cancel Booking
   </button>
+  {
+    mybooking.status==='Cancelled'&&<button
+    onClick={() => handleStatusChange("Pending")}
+    className="rounded-lg border border-red-200 bg-red-50 px-4 py-2.5 text-sm font-semibold text-green-600 transition-all duration-200 hover:bg-red-100 active:scale-95 cursor-pointer"
+  >
+    Undo Cancel 
+  </button>
+  }
 </div>
   );
 };

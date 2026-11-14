@@ -4,6 +4,7 @@ import { IStudio } from "@/type/StudioType";
 import ExploredStudiosSectionFitering from "@/components/ExploredStudiosSectionFitering";
 import { notFound } from "next/navigation";
 import { getTokenFromServer } from "@/lib/getrTokenFromServer";
+import StudiosSearch from "@/components/StudiosSearch";
 
 
 
@@ -29,6 +30,7 @@ notFound()
    <div>
 
      <ExploredStudiosSectionFitering studios={studios}/>
+     
    </div>
   );
 };

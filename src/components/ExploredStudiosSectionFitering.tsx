@@ -22,6 +22,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowUpRight, Star, } from "lucide-react";
 import { IStudio } from "@/type/StudioType";
+import StudiosSearch from "./StudiosSearch";
 
 const ExploredStudiosSectionFitering = ({studios}:{studios:IStudio[]}) => {
   const photos = studios.filter(photos=>photos.category==='Photo Studio')
@@ -53,6 +54,7 @@ const [position, setPosition] = React.useState("default")
           <p className="mx-auto mb-6 mt-3 max-w-xl text-sm text-gray-600 dark:text-gray-400">
             Discover the perfect creative space for your next project.
           </p>
+          <StudiosSearch studios={studios}/>
           <DropdownMenu >
   <DropdownMenuTrigger
     render={
@@ -61,7 +63,7 @@ const [position, setPosition] = React.useState("default")
         className="border-purple-200 bg-white cursor-pointer text-purple-700 hover:bg-purple-50 hover:text-purple-800 dark:border-purple-500/30 dark:bg-[#151518] dark:text-purple-300 dark:hover:bg-purple-500/10"
       >
         
-        <ArrowDownWideNarrow size={20} strokeWidth={2}  /> <span className="font-bold text-base text-black dark:text-white sm:text-[18px]">{position}</span> 
+        <ArrowDownWideNarrow size={20} strokeWidth={2}  />filter<span className="font-bold text-base text-black dark:text-white sm:text-[18px]">{position}</span> 
        
 
         

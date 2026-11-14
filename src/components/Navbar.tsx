@@ -65,9 +65,11 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
 
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2">
-
-          {/* Light Mode - Normal Navbar */}
+        <Link
+          href="/"
+          onClick={() => setMenuOpen(false)}
+          className="flex shrink-0 items-center gap-2"
+        >
           <Image
             src={logo2}
             alt="Studio Space"
@@ -78,7 +80,6 @@ export function Navbar() {
             )}
           />
 
-          {/* Dark Mode OR Transparent Navbar */}
           <Image
             src={logo}
             alt="Studio Space"
@@ -98,9 +99,7 @@ export function Navbar() {
             )}
           >
             Studio
-            <span className="text-[#9b2ae5]">
-              Space
-            </span>
+            <span className="text-[#9b2ae5]">Space</span>
           </span>
         </Link>
 
@@ -138,7 +137,10 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-5">
           <ThemeToggle />
 
-          <NavSessionManage />
+          {/* Desktop Auth */}
+          <div className="hidden md:block">
+            <NavSessionManage />
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -207,34 +209,19 @@ export function Navbar() {
               );
             })}
 
-            {/* Mobile Auth Links */}
+            {/* Mobile Auth */}
             <div
               className={cn(
-                "mt-3 flex flex-col gap-2 border-t pt-3 [&>a]:h-10",
+                "mt-3 border-t pt-4",
                 transparentNavbar
                   ? "border-white/10"
                   : "border-gray-200 dark:border-white/10"
               )}
             >
-              <Link
-                href="/login"
-                onClick={() => setMenuOpen(false)}
-                className={buttonVariants({
-                  variant: "outline",
-                })}
-              >
-                Login
-              </Link>
-
-              <Link
-                href="/register"
-                onClick={() => setMenuOpen(false)}
-                className={buttonVariants({
-                  variant: "default",
-                })}
-              >
-                Register
-              </Link>
+              <NavSessionManage
+                mobile
+                onNavigate={() => setMenuOpen(false)}
+              />
             </div>
           </nav>
         </div>

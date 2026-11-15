@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import BookingModals from "@/components/BookingModals";
 import { notFound } from "next/navigation";
-import { getTokenFromServer } from "@/lib/getrTokenFromServer";
+
 ;
 
 interface StudioDetailsPageProps {
@@ -29,13 +29,10 @@ const StudioDetailsPage = async ({
 }: StudioDetailsPageProps) => {
   const { id } = await params;
 
-  const token = await getTokenFromServer()
+  
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios/${id}`,{
-    headers:{
-      authorization: `Bearer ${token}`
-    }
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios/${id}`
+  );
 
   if (!res.ok) {
     notFound()

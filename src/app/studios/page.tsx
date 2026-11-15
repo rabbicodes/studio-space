@@ -3,18 +3,15 @@ import { IStudio } from "@/type/StudioType";
 
 import ExploredStudiosSectionFitering from "@/components/ExploredStudiosSectionFitering";
 import { notFound } from "next/navigation";
-import { getTokenFromServer } from "@/lib/getrTokenFromServer";
+
 
 
 
 
 const StudiosPage = async () => {
-  const token = await getTokenFromServer()
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios`,{
-    headers:{
-      authorization:`Bearer ${token}`
-    }
-  });
+  
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios`
+  );
 
   if (!res.ok) {
 notFound()

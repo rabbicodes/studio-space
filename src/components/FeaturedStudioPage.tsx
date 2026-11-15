@@ -3,16 +3,12 @@ import { IStudio } from "@/type/StudioType";
 import Link from "next/link";
 import { ArrowUpRight, MapPin, Star } from "lucide-react";
 import { notFound } from "next/navigation";
-import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 import Image from "next/image";
 
 const FeaturedStudioPage = async () => {
-  const token = await getTokenFromServer()
+  
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/featuredStudio`, {
     cache: "no-store",
-    headers:{
-      authorization:`Bearer ${token}`
-    }
   });
 
   if (!res.ok) {

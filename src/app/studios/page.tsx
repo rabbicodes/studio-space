@@ -10,7 +10,9 @@ import { notFound } from "next/navigation";
 
 const StudiosPage = async () => {
   
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios`
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studios`,{
+    cache:'no-store'
+  }
   );
 
   if (!res.ok) {

@@ -88,7 +88,7 @@ const TrashModalForMyListPage = ({ mylist }: { mylist: IBooking }) => {
 
             <AlertDialogAction
               onClick={handleDeleteContinue}
-              className="border-0 bg-[#9b2ae5] text-white hover:bg-[#8120c4] focus-visible:ring-[#9b2ae5]"
+              className="border-0 bg-[#9b2ae5] cursor-pointer text-white hover:bg-[#8120c4] focus-visible:ring-[#9b2ae5]"
             >
               Delete Studio
             </AlertDialogAction>

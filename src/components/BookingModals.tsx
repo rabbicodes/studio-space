@@ -43,30 +43,22 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
 
       if (error || !session?.user) {
         toast.error("Please login first");
+
         router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`);
         return;
       }
 
-      // Validate booking time
-      if (data.startTime >= data.endTime) {
-        toast.error("End time must be after start time");
-        return;
-      }
+      // Validate time
 
       // Separate studio ID
       const { _id, ...studioData } = studio;
-
-      if (!_id) {
-        toast.error("Studio ID not found");
-        return;
-      }
+      console.log(_id);
 
       const user = session.user;
 
       // Prepare booking data
       const bookingData = {
         data,
-        studioId: _id,
         ...studioData,
         userName: user.name,
         email: user.email,
@@ -74,48 +66,33 @@ const BookingModals = ({ studio }: BookingModalsProps) => {
       };
 
       console.log("Booking Data:", bookingData);
-
-      // Get JWT token
-      const token = await getTokenFromClient();
-
-      if (!token) {
-        toast.error("Authentication token not found. Please login again.");
-        return;
-      }
-
+  const token = await getTokenFromClient();
       // Send booking request
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/mybooking`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(bookingData),
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mybooking`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization:`Bearer ${token}`
+        },
+        body: JSON.stringify(bookingData),
+      });
 
       const result = await res.json();
 
-      console.log("Booking Response:", result);
-
-      // Handle backend errors
+      // Handle backend validation errors
       if (!res.ok) {
-        toast.error(result.error || result.message || "Booking failed");
+        toast.error(result.message || "Booking failed");
         return;
       }
 
       // Success
+      console.log("Booking Result:", result);
       toast.success("Booking submitted successfully!");
-      form.reset();
-      router.refresh();
 
+      form.reset();
     } catch (error) {
       console.error("Booking Error:", error);
-      toast.error(
-        error instanceof Error ? error.message : "Failed to submit booking"
-      );
+      toast.error("Failed to submit booking");
     }
   };
 

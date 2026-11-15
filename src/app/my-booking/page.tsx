@@ -17,6 +17,10 @@ import { getTokenFromServer } from "@/lib/getrTokenFromServer";
 
   
 const MyBookingPage = async () => {
+ 
+
+
+  
   const session = await auth.api.getSession({
     headers: await headers() // you need to pass the headers object.
 })
@@ -38,6 +42,7 @@ const token = await getTokenFromServer()
   }
 
   const myBookings: IBooking[] = await res.json();
+   
 
   return (
     <div className="mx-auto min-h-screen max-w-6xl px-4 py-10 sm:px-5 sm:py-12">

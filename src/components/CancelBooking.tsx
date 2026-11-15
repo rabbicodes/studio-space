@@ -2,6 +2,7 @@
 import generateReceipt from "@/lib/generateReceipt";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { IBooking } from "@/type/MyBooking";
+import { FileText } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
@@ -36,7 +37,7 @@ const CancelBooking = ({ mybooking }: { mybooking: IBooking }) => {
     onClick={() => generateReceipt(mybooking)}
     className="rounded-lg border border-purple-600 bg-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:border-purple-700 hover:bg-purple-700 active:scale-95 cursor-pointer dark:border-purple-500 dark:bg-purple-600 dark:hover:bg-purple-500"
   >
-    Receipt
+   <div className="flex items-center gap-2"><h1> Receipt</h1><FileText  /></div>
   </button>
    <button
     onClick={() => handleStatusChange("Cancelled")}
